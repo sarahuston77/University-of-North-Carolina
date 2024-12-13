@@ -1,0 +1,32 @@
+B2[n_Integer] := (2^(2 n) - Binomial[2 n, n])/(Binomial[2 n, n] + 0.);
+P2[n_Integer] := (Binomial[2 n, n] + 0.)/2^(2 n);
+GN[n_Integer] := 100*(P2[n]*5 - (1 - P2[n]));
+GAIN = 0; pp = 200000; n = 7; bet = B2[n]; bet = 5;
+Do[gain = 0; check = 0; x = 0; y = 0;
+Do[
+If[check == 0 && (x == n + 1 || y == n + 1 || (x == n && y == n)),
+check = 1;
+If[x == n && y == n, gain = gain + bet, gain = gain - 1]];
+If[check == 0, Do[uu = Random[], {jj, 1, x + 1}];
+If[uu < 0.5, x = x + 1, y = y + 1]], {i, 1, 2 n + 2}];
+If[q == Floor[q/10000]*10000,
+Print["n=", n, " game=", q, " gain=", gain]];
+GAIN = GAIN + gain, {q, 1, pp}];
+aver = N[100*GAIN/pp];
+Print["MC Gain=", aver, " vs. Exact=", GN[n], " for bet=", bet,
+" vs. ", B2[n]];
+MC Gain=25.1216 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=26.2076 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.7228 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.1738 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.418 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.4702 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.5218 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC Gain=25.9544 vs. Exact=25.6836 for bet=5 vs. 3.77389
+MC= via Monte Carlo method. Gain is in cents vs 25.6836c,
+which is the theoretical average for bet $5 vs. $3.77389,
+which is the theoretical one.
+Random[] in Mathematica is of of poor quality;
+I improved it somewhat but MC Gain is still somewhat
+below the theoretical average. If you use simple
+Random[], then it will be mostly >26c.
