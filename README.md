@@ -113,104 +113,55 @@ Through this course, I have developed the ability to:
 
 ---
 
-## MATH 548 - Combinatorial Mathematics
+## PSYC 534 - Computational Statistics
 
 ### Course Overview
 
-MATH 548 covers the fundamental principles of combinatorial mathematics, focusing on advanced counting techniques and their applications. The course emphasizes problem-solving and algorithmic thinking, which are crucial for developing efficient computational solutions.
+PSYC 534 focuses on the computational application of statistical methods to solve psychological research problems. The course emphasizes programming, statistical modeling, and data visualization.
 
 #### Key Topics Covered
 
-- **Advanced Counting Techniques:**
-  - Permutations and combinations
-  - Inclusion-exclusion principle
-  - Pigeonhole principle
+- **Statistical Computing:**
+  - Writing scripts for data manipulation
+  - Simulation techniques for probability distributions
+  - Monte Carlo methods
 
-- **Graph Theory and Algorithms:**
-  - Graph traversals and shortest path algorithms
-  - Network flows
-  - Matching theory
+- **Data Visualization:**
+  - Creating informative visual representations of data
+  - Utilizing tools like `ggplot2` and `matplotlib`
 
-### Learning Outcomes
+- **Modeling and Inference:**
+  - Linear regression and generalized linear models
+  - Bayesian data analysis
 
-- Developed strong problem-solving skills using combinatorial methods.
-- Applied combinatorial techniques to develop efficient algorithms for solving complex problems.
-- Gained experience in implementing graph algorithms using Python to solve real-world problems.
+- **Programming:**
+  - Use of statistical programming languages, including R and Python
 
----
+### Projects
 
-## MATH 381 - Discrete Mathematics (Honors)
+#### 1. Bayesian Analysis of Psychological Data
 
-### Course Overview
+- **Description:** Conducted a Bayesian analysis on a psychological dataset, exploring posterior distributions and predictive modeling.
+- **Technologies:** R, Stan
+- **Skills:** Bayesian statistics, programming in R
 
-MATH 381 provides an in-depth exploration of discrete mathematical structures and their applications in computer science. The course focuses on logic, set theory, and proof techniques, which are fundamental for rigorous computational reasoning.
+#### 2. Monte Carlo Simulations
 
-#### Key Topics Covered
+- **Description:** Wrote Monte Carlo simulations to estimate probabilities and test hypotheses in psychological research contexts.
+- **Technologies:** Python, NumPy
+- **Skills:** Simulation, hypothesis testing, Python programming
 
-- **Logic and Proof Techniques:**
-  - Propositional and predicate logic
-  - Direct and indirect proof methods
-  - Mathematical induction
+#### 3. Data Visualization and Reporting
 
-- **Set Theory and Functions:**
-  - Relations and equivalence classes
-  - Functions and bijections
-  - Cardinality and infinite sets
-
-- **Algorithms and Complexity:**
-  - Growth of functions and Big-O notation
-  - Recursive algorithms
-  - Basic complexity classes
+- **Description:** Designed and developed visualizations of complex datasets, focusing on storytelling through data.
+- **Technologies:** R, ggplot2
+- **Skills:** Data visualization, reporting, programming in R
 
 ### Learning Outcomes
 
-- Mastered discrete mathematical concepts crucial for computer science.
-- Developed proficiency in writing rigorous proofs and constructing logical arguments.
-- Enhanced ability to analyze the efficiency of algorithms and understand their computational complexity.
-
----
-
-## MATH 383 - Differential Equations
-
-### Course Overview
-
-MATH 383 explores ordinary differential equations (ODEs) and their applications to physical and engineering problems. The course emphasizes analytical and numerical methods for solving ODEs.
-
-#### Key Topics Covered
-
-- First-order differential equations
-- Second-order linear differential equations
-- Systems of differential equations
-- Laplace transforms
-- Numerical methods for solving differential equations
-
-### Learning Outcomes
-
-- Developed proficiency in solving differential equations analytically and numerically.
-- Applied differential equations to model real-world phenomena.
-- Gained experience in using software tools to solve and visualize solutions to ODEs.
-
----
-
-## MATH 347 - Linear Algebra for Applications
-
-### Course Overview
-
-MATH 347 introduces linear algebra concepts with an emphasis on practical applications in science and engineering. The course highlights matrix theory and vector spaces as foundational tools for computational work.
-
-#### Key Topics Covered
-
-- Matrices and linear systems
-- Eigenvalues and eigenvectors
-- Orthogonality and least-squares solutions
-- Vector spaces and subspaces
-- Applications to data science and optimization
-
-### Learning Outcomes
-
-- Mastered linear algebra techniques for solving complex systems of equations.
-- Applied matrix theory to real-world problems, such as optimization and data science.
-- Gained a deeper understanding of the role of linear algebra in computational modeling.
+- Acquired proficiency in applying statistical methods to analyze psychological data.
+- Gained expertise in statistical programming using R and Python.
+- Developed an understanding of advanced statistical modeling techniques.
 
 ---
 
