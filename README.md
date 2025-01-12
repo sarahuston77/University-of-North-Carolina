@@ -170,6 +170,50 @@ MATH 381 provides an in-depth exploration of discrete mathematical structures an
 
 ---
 
+## MATH 383 - Differential Equations
+
+### Course Overview
+
+MATH 383 explores ordinary differential equations (ODEs) and their applications to physical and engineering problems. The course emphasizes analytical and numerical methods for solving ODEs.
+
+#### Key Topics Covered
+
+- First-order differential equations
+- Second-order linear differential equations
+- Systems of differential equations
+- Laplace transforms
+- Numerical methods for solving differential equations
+
+### Learning Outcomes
+
+- Developed proficiency in solving differential equations analytically and numerically.
+- Applied differential equations to model real-world phenomena.
+- Gained experience in using software tools to solve and visualize solutions to ODEs.
+
+---
+
+## MATH 347 - Linear Algebra for Applications
+
+### Course Overview
+
+MATH 347 introduces linear algebra concepts with an emphasis on practical applications in science and engineering. The course highlights matrix theory and vector spaces as foundational tools for computational work.
+
+#### Key Topics Covered
+
+- Matrices and linear systems
+- Eigenvalues and eigenvectors
+- Orthogonality and least-squares solutions
+- Vector spaces and subspaces
+- Applications to data science and optimization
+
+### Learning Outcomes
+
+- Mastered linear algebra techniques for solving complex systems of equations.
+- Applied matrix theory to real-world problems, such as optimization and data science.
+- Gained a deeper understanding of the role of linear algebra in computational modeling.
+
+---
+
 ## Benefits of Studying at the University of North Carolina
 
 - **High-Quality Education:** The University of North Carolina is renowned for its rigorous academic standards and innovative research, providing students with a top-tier education in computer science and mathematics.
