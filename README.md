@@ -2,6 +2,60 @@
 
 Welcome to the repository for my coursework and projects from my studies at the University of North Carolina. This repository showcases the work I've completed in various courses, emphasizing my skills in programming, data science, and mathematical problem-solving.
 
+## COMP 210 - Data Structures and Analysis
+
+### Course Overview
+
+COMP 210 focuses on organizing data in computer programs to enable efficient manipulation, particularly for large-scale problems. The course delves into the construction of data structures, providing insights into the design choices behind standard libraries.
+
+#### Key Topics Covered
+
+- **Data Structures:**
+  - Linear structures: lists, stacks, queues
+  - Trees: binary trees, balanced binary trees
+  - Hashing and hash maps
+  - Graph theory and algorithms
+
+- **Algorithm Analysis:**
+  - Asymptotic analysis (Big O notation)
+  - Sorting algorithms
+  - Binary heaps
+
+- **Programming in Java:**
+  - Abstraction and encapsulation methods
+  - Generics in Java
+
+### Projects
+
+#### 1. Implementation of Linked Lists
+
+- **Description:** Developed a Java program to implement and manipulate linked lists, demonstrating understanding of dynamic data structures.
+- **Technologies:** Java
+- **Skills:** Data structure implementation, Java programming
+
+#### 2. Binary Search Trees
+
+- **Description:** Created Java methods to perform operations on binary search trees, including insertion, deletion, and traversal.
+- **Technologies:** Java
+- **Skills:** Tree data structures, algorithm implementation
+
+#### 3. Graph Algorithms
+
+- **Description:** Implemented algorithms for graph traversal, shortest path, and minimum spanning tree, applying graph theory concepts to solve complex problems.
+- **Technologies:** Java
+- **Skills:** Graph theory, algorithm design
+
+### Learning Outcomes
+
+Through this course, I have developed the ability to:
+
+- Construct and implement various data structures from scratch.
+- Analyze the efficiency of algorithms using asymptotic analysis.
+- Apply data structures and algorithms to solve real-world problems effectively.
+- Enhance proficiency in Java programming and software development practices.
+
+---
+
 ## COMP 110 - Introduction to Programming and Data Science
 
 ### Course Overview
@@ -57,6 +111,8 @@ Through this course, I have developed the ability to:
 - Analyze data and create visualizations to support data-driven decisions.
 - Address ethical considerations in computing and recognize the impact of technology on society.
 
+---
+
 ## MATH 548 - Combinatorial Mathematics
 
 ### Course Overview
@@ -80,6 +136,8 @@ MATH 548 covers the fundamental principles of combinatorial mathematics, focusin
 - Developed strong problem-solving skills using combinatorial methods.
 - Applied combinatorial techniques to develop efficient algorithms for solving complex problems.
 - Gained experience in implementing graph algorithms using Python to solve real-world problems.
+
+---
 
 ## MATH 381 - Discrete Mathematics (Honors)
 
@@ -110,11 +168,15 @@ MATH 381 provides an in-depth exploration of discrete mathematical structures an
 - Developed proficiency in writing rigorous proofs and constructing logical arguments.
 - Enhanced ability to analyze the efficiency of algorithms and understand their computational complexity.
 
+---
+
 ## Benefits of Studying at the University of North Carolina
 
 - **High-Quality Education:** The University of North Carolina is renowned for its rigorous academic standards and innovative research, providing students with a top-tier education in computer science and mathematics.
 - **Comprehensive Facilities:** The university offers state-of-the-art facilities, including modern computer labs and extensive support from experienced faculty members.
 - **Career Opportunities:** Graduates are well-prepared for careers in various sectors, including technology, finance, and academia, thanks to the university's strong emphasis on practical skills and industry connections.
+
+---
 
 ## Conclusion
 
