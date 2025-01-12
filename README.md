@@ -113,6 +113,85 @@ Through this course, I have developed the ability to:
 
 ---
 
+## MATH 548 - Combinatorial Mathematics
+
+### Course Overview
+
+MATH 548 covers the fundamental principles of combinatorial mathematics, focusing on advanced counting techniques and their applications. The course emphasizes problem-solving and algorithmic thinking, which are crucial for developing efficient computational solutions.
+
+#### Key Topics Covered
+
+- **Advanced Counting Techniques:**
+  - Permutations and combinations
+  - Inclusion-exclusion principle
+  - Pigeonhole principle
+
+- **Graph Theory and Algorithms:**
+  - Graph traversals and shortest path algorithms
+  - Network flows
+  - Matching theory
+
+### Learning Outcomes
+
+- Developed strong problem-solving skills using combinatorial methods.
+- Applied combinatorial techniques to develop efficient algorithms for solving complex problems.
+- Gained experience in implementing graph algorithms using Python to solve real-world problems.
+
+---
+
+## MATH 381 - Discrete Mathematics (Honors)
+
+### Course Overview
+
+MATH 381 provides an in-depth exploration of discrete mathematical structures and their applications in computer science. The course focuses on logic, set theory, and proof techniques, which are fundamental for rigorous computational reasoning.
+
+#### Key Topics Covered
+
+- **Logic and Proof Techniques:**
+  - Propositional and predicate logic
+  - Direct and indirect proof methods
+  - Mathematical induction
+
+- **Set Theory and Functions:**
+  - Relations and equivalence classes
+  - Functions and bijections
+  - Cardinality and infinite sets
+
+- **Algorithms and Complexity:**
+  - Growth of functions and Big-O notation
+  - Recursive algorithms
+  - Basic complexity classes
+
+### Learning Outcomes
+
+- Mastered discrete mathematical concepts crucial for computer science.
+- Developed proficiency in writing rigorous proofs and constructing logical arguments.
+- Enhanced ability to analyze the efficiency of algorithms and understand their computational complexity.
+
+---
+
+## MATH 347 - Linear Algebra for Applications
+
+### Course Overview
+
+MATH 347 introduces linear algebra concepts with an emphasis on practical applications in science and engineering. The course highlights matrix theory and vector spaces as foundational tools for computational work.
+
+#### Key Topics Covered
+
+- Matrices and linear systems
+- Eigenvalues and eigenvectors
+- Orthogonality and least-squares solutions
+- Vector spaces and subspaces
+- Applications to data science and optimization
+
+### Learning Outcomes
+
+- Mastered linear algebra techniques for solving complex systems of equations.
+- Applied matrix theory to real-world problems, such as optimization and data science.
+- Gained a deeper understanding of the role of linear algebra in computational modeling.
+
+---
+
 ## PSYC 534 - Computational Statistics
 
 ### Course Overview
