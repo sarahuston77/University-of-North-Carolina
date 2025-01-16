@@ -44,3 +44,18 @@ ls()
 # let's add something:
 EvenMoreNumbers = seq(50, 100, 1)
 ls()
+
+# Create a toy vector to play with
+ToyWords <- c("hello", "bye")
+
+# Take a look at it
+ToyWords
+
+# is it a vector?
+is.vector(ToyWords)
+
+# is it numeric?
+is.numeric(ToyWords)
+
+# What is it?
+class(ToyWords)
