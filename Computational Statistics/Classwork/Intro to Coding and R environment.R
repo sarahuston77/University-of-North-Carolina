@@ -34,7 +34,9 @@ seq(from = 1, to = 10, by = 1)
 seq(to = 10, from = 1, by = 1)
 
 # Print every leap year from now until 20 years
-seq(2024, 2044, 4)[2:length(seq(2024, 2044, 4))]
+all_years <- seq(to = 2025 + 20, from = 2025, by = 1)
+leap_indices <- which(all %% 4 == 0)
+print(all_years[indices])
 
 # Take a look at what is in the environment:
 ls()
