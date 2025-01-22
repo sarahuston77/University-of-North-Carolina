@@ -1,0 +1,16 @@
+Version: 1.0
+ProjectId: df8f8b0b-d57f-4903-8ce1-523f977f3dff
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+ProjectName: PSYC_Assignments_Huston
