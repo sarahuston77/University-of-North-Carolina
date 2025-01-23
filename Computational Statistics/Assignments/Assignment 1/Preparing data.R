@@ -43,4 +43,9 @@ w12345 <- merge(w12345, w5_child, by = c('famid'), all = TRUE)
 # w12345 <- (list(w1_child, w2_child, w3_child, w4_child, w5_child)
            # %>% reduce(full_join, by = "famid")) 
 
-
+# Select specified variables using dplyr
+# install.packages("dplyr")
+library(dplyr)
+w12345 <- w12345 %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
+                                   contains("atts"), contains("pcmp"), contains("attt"),
+                                   contains("dscr"), contains("atod"))
