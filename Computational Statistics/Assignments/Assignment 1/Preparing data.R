@@ -24,3 +24,23 @@ w5_child[w5_child == "9" | w5_child == "8" | w5_child == "98" | w5_child == "99"
 educinc[educinc == "."] <- NA
 w2_child[w2_child == "-999"] <- NA
 
+# Make all headers into lower case for easier merging
+names(w1_child) <- tolower(names(w1_child))
+names(w2_child) <- tolower(names(w2_child))
+names(w3_child) <- tolower(names(w3_child))
+names(w4_child) <- tolower(names(w4_child))
+names(w5_child) <- tolower(names(w5_child))
+names(educinc) <- tolower(names(educinc))
+
+# Merge all data frames via column names
+w12345 <- merge(w1_child, w2_child, by = c('famid'), all = TRUE)
+w12345 <- merge(w12345, w3_child, by = c('famid'), all = TRUE)
+w12345 <- merge(w12345, w4_child, by = c('famid'), all = TRUE)
+w12345 <- merge(w12345, w5_child, by = c('famid'), all = TRUE)
+
+# Alternative way to do this with tidyverse
+# library("tidyverse")
+# w12345 <- (list(w1_child, w2_child, w3_child, w4_child, w5_child)
+           # %>% reduce(full_join, by = "famid")) 
+
+
