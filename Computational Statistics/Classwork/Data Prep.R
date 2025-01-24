@@ -128,10 +128,19 @@ TSST_HR_SR$Emo_Angry_rev <- 6- TSST_HR_SR$Emo_Angry
 Emo_Angry_explore <- cbind(TSST_HR_SR$Emo_Angry, TSST_HR_SR$Emo_Angry_rev) 
 head(Emo_Angry_explore)
 
-# mean:
+# Mean:
 meanHRSpeech1 <- mean(TSST_HR_SR$HRSpeech_1, na.rm = TRUE) # Note the "na.rm = TRUE". This removes NAs!
 # Standard deviation:
 sdHRSpeech1 <- sd(TSST_HR_SR$HRSpeech_1, na.rm = TRUE)
 # See results:
 meanHRSpeech1
 sdHRSpeech1
+
+# Max
+maxHRSpeech1 <- max(TSST_HR_SR$HRSpeech_1, na.rm = TRUE)
+maxHRSpeech1
+
+TSST_HR_SR[!is.na(TSST_HR_SR$HRSpeech_1) & (TSST_HR_SR$HRSpeech_1 > 150), which(colnames(TSST_HR_SR) == "HRSpeech_1")] <- NA
+
+meanHRSpeech1 <- mean(TSST_HR_SR$HRSpeech_1, na.rm = TRUE)
+meanHRSpeech1
