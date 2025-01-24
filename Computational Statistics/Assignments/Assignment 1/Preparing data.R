@@ -65,16 +65,16 @@ w12345$c04attt <- rowMeans(w12345[c(grep("c04attt", names(w12345)))], na.rm = TR
 w12345$c01pcmp <- rowMeans(w12345[c(grep("c01pcmp", names(w12345)))], na.rm = TRUE)
 w12345$c04pcmp <- rowMeans(w12345[c(grep("c04pcmp", names(w12345)))], na.rm = TRUE)
 
-w12345$c01dscr <- rowMeans(w12345[c(grep("c01dscr07|c01dscr08|c01dscr09|c01dscr10", names(w12345)))], na.rm = TRUE)
-w12345$c04dscr <- rowMeans(w12345[c(grep("c04dscr07|c04dscr08|c04dscr09|c04dscr10", names(w12345)))], na.rm = TRUE)
+w12345$c01dscr <- rowMeans(w12345[c("c01dscr07", "c01dscr08", "c01dscr09", "c01dscr10")], na.rm = TRUE)
+w12345$c04dscr <- rowMeans(w12345[c("c04dscr07", "c04dscr08", "c04dscr09", "c04dscr10")], na.rm = TRUE)
 
-w12345$c01atts <- rowMeans(w12345[c(grep("c01atts03|c01atts07|c01atts08|c01atts10", names(w12345)))], na.rm = TRUE)
-w12345$c02atts <- rowMeans(w12345[c(grep("c02atts03|c02atts07|c02atts08|c02atts10", names(w12345)))], na.rm = TRUE)
-w12345$c02atts <- rowMeans(w12345[c(grep("c03atts03|c03atts07|c03atts08|c03atts10", names(w12345)))], na.rm = TRUE)
-w12345$c04atts <- rowMeans(w12345[c(grep("c01atts03|c04atts07|c04atts08|c04atts10", names(w12345)))], na.rm = TRUE)
+w12345$c01atts <- rowMeans(w12345[c("c01atts03", "c01atts07", "c01atts08", "c01atts10")], na.rm = TRUE)
+w12345$c02atts <- rowMeans(w12345[c("c02atts03", "c02atts07", "c02atts08", "c02atts10")], na.rm = TRUE)
+w12345$c02atts <- rowMeans(w12345[c("c03atts03", "c03atts07", "c03atts08", "c03atts10")], na.rm = TRUE)
+w12345$c04atts <- rowMeans(w12345[c("c01atts03", "c04atts07", "c04atts08", "c04atts10")], na.rm = TRUE)
 
-w12345$c01atod <- rowSums(w12345[c(grep("c01atod01|c01atod02|c01atod03|c01atod04|c01atod05|c01atod06|c01atod07|c01atod08|c01atod09", names(w12345)))], na.rm = TRUE)
-w12345$c04atod <- rowSums(w12345[c(grep("c04atod01|c04atod02|c04atod03|c04atod04|c04atod05|c04atod06|c04atod07|c04atod08|c04atod09", names(w12345)))], na.rm = TRUE)
+w12345$c01atod <- rowSums(w12345[c("c01atod01", "c01atod02", "c01atod03", "c01atod04", "c01atod05", "c01atod06", "c01atod07", "c01atod08", "c01atod09")], na.rm = TRUE)
+w12345$c04atod <- rowSums(w12345[c("c04atod01", "c04atod02", "c04atod03", "c04atod04", "c04atod05", "c04atod06", "c04atod07", "c04atod08", "c04atod09")], na.rm = TRUE)
 
 ## Final Quiz Questions
 
