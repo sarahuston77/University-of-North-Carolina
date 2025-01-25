@@ -96,14 +96,12 @@ mean(four_sibs$c01attt)
 
 # 5) Create difference scores between Waves 1 and 4 for all scales. Which scale has
 # the greatest average absolute change (i.e., difference)?
-w12345$difference_atts <- w12345$c01atts - w12345$c04atts
-w12345$difference_pcmp <- w12345$c01pcmp - w12345$c04pcmp
-w12345$difference_attt <- w12345$c01attt - w12345$c04attt
-w12345$difference_dscr <- w12345$c01dscr - w12345$c04dscr
-w12345$difference_atod <- w12345$c01atod - w12345$c04atod
+w12345$difference_atts <- abs(w12345$c01atts - w12345$c04atts)
+w12345$difference_pcmp <- abs(w12345$c01pcmp - w12345$c04pcmp)
+w12345$difference_attt <- abs(w12345$c01attt - w12345$c04attt)
+w12345$difference_dscr <- abs(w12345$c01dscr - w12345$c04dscr)
+w12345$difference_atod <- abs(w12345$c01atod - w12345$c04atod)
 
-mean(abs(w12345$difference_atts), na.rm = TRUE) # "atts" has the greatest average absolute change
-mean(abs(w12345$difference_pcmp), na.rm = TRUE)
-mean(abs(w12345$difference_attt), na.rm = TRUE)
-mean(abs(w12345$difference_dscr), na.rm = TRUE)
-mean(abs(w12345$difference_atod), na.rm = TRUE)
+# "atod" has the greatest average absolute change
+ave_abs_change <- colMeans(w12345[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
+ave_abs_change[which.max(ave_abs_change)]
