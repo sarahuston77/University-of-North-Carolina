@@ -24,17 +24,10 @@ names(w4_child) <- tolower(names(w4_child))
 names(w5_child) <- tolower(names(w5_child))
 names(educinc) <- tolower(names(educinc))
 
-# Merge all data frames via column names
-w12345 <- merge(w1_child, w2_child, by = c('famid'), all = TRUE)
-w12345 <- merge(w12345, w3_child, by = c('famid'), all = TRUE)
-w12345 <- merge(w12345, w4_child, by = c('famid'), all = TRUE)
-w12345 <- merge(w12345, w5_child, by = c('famid'), all = TRUE)
-w12345 <- merge(w12345, educinc, by = c('famid'), all = TRUE)
-
 # Alternative way to do this with tidyverse and less repetition
-# library("tidyverse")
-# w12345 <- (list(w1_child, w2_child, w3_child, w4_child, w5_child)
-           # %>% reduce(full_join, by = "famid")) 
+library("tidyverse")
+w12345 <- (list(w1_child, w2_child, w3_child, w4_child, w5_child, educinc)
+            %>% reduce(full_join, by = "famid")) 
 
 # Select specified variables using dplyr
 # install.packages("dplyr")
