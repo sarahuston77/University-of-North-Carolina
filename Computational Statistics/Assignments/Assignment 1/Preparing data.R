@@ -21,15 +21,14 @@ names(w3_child) <- tolower(names(w3_child))
 names(w4_child) <- tolower(names(w4_child))
 names(educinc) <- tolower(names(educinc))
 
-# Merge files in one line by famid
-library("tidyverse")
-w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
-            %>% reduce(full_join, by = "famid")) 
-
-# Select specified variables using dplyr
 # install.packages("dplyr")
-library(dplyr)
-w1234 <- w1234 %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
+# install.packages("tidyverse")
+library("tidyverse")
+library("dplyr")
+
+# Merge files by famid and select specified variables
+w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
+            %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
                                    contains("atts"), contains("pcmp"), contains("attt"),
                                    contains("dscr"), contains("atod"), fameduc, income, c01sibli)
 
@@ -61,16 +60,14 @@ w1234$c04atod <- rowSums(w1234[c("c04atod01", "c04atod02", "c04atod03", "c04atod
 ## Final Quiz Questions
 
 # 1) Dimension of your final data frame (row x column)
-dimension <- dim(w1234)
-dimension
+dim(w1234)
 
 # 2) What is the max average education level obtained by parents (“fameduc”)?
 max_educ <- max(w1234$fameduc, na.rm = TRUE)
 max_educ
 
-# 3) How many people have this level of education?
-num_highest_educ <- sum(w1234$fameduc >= max_educ, na.rm = TRUE)
-num_highest_educ * 2 # Multiply by 2 since the average education is for two parents i.e., number of people is 2
+# 3) How many children have parents with this level of education?
+sum(w1234$fameduc >= max_educ, na.rm = TRUE)
 
 # 4) What is the mean for variable “c01attt” for those who have 4 siblings?
 four_sibs <- w1234[w1234$c01sibli == 4 & !is.na(w1234$c01sibli), ]
@@ -84,4 +81,3 @@ w1234[paste("difference_", score_variables, sep = "")] <- abs(w1234[paste("c01",
 # "atod" has the greatest average absolute change
 ave_abs_change <- colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
 ave_abs_change[which.max(ave_abs_change)]
-
