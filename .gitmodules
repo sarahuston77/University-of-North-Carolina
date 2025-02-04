@@ -1,3 +1,4 @@
 [submodule "Data-Structures-and-Analysis"]
 	path = Data-Structures-and-Analysis
 	url = https://github.com/sarahuston77/Data-Structures-and-Analysis.git
+	branch = main
