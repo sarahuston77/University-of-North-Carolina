@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29a6fab6-9a5c-4ff6-8cba-e7f1535d45b2" name="Changes" comment="General work">
+      <change afterPath="$PROJECT_DIR$/Classwork/src/lec06/USMS_2/USMS_Array.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classwork/src/lec06/USMS_Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classwork/src/lec06/USMS_1/USMS_Array.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sarahuston77&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sarahuston77/COMP-210-Data-Structures-and-Analysis.git&quot;,
+    &quot;accountId&quot;: &quot;45feee55-4686-464f-9317-c1f818443484&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2rVuKQ2Jmm9DXfkKtZD7Vq16Ca0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ArrayFill.executor": "Run",
+    "Application.Arrays.executor": "Run",
+    "Application.FactRecI.executor": "Run",
+    "Application.JavaStarter (1).executor": "Run",
+    "Application.JavaStarter (2).executor": "Run",
+    "Application.JavaStarter.executor": "Run",
+    "Application.LMS.executor": "Run",
+    "Application.Stack2a.executor": "Run",
+    "Application.Stack3.executor": "Debug",
+    "Application.StaticVariables.executor": "Run",
+    "Application.StringDemo.executor": "Debug",
+    "Application.USMS_Array.executor": "Run",
+    "Application.assn01.JavaStarter.executor": "Run",
+    "Application.lec04.Arrays.executor": "Debug",
+    "Application.lec06.USMS_2.USMS_Array.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/sara/COMP-210-Data-Structures-and-Analysis/Classwork/src/lec06/USMS_2",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.265625",
+    "project.structure.side.proportion": "0.22370173"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Classwork/src/lec06/USMS_2" />
+      <recent name="$PROJECT_DIR$/Assignments" />
+      <recent name="$PROJECT_DIR$/Assignments/Assignment_1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Classwork/src/lec06/USMS_1" />
+      <recent name="$PROJECT_DIR$/Classwork/src/lec05" />
+      <recent name="$PROJECT_DIR$/Assignments/assn01/src" />
+      <recent name="$PROJECT_DIR$/Assignments/Assignment_0" />
+      <recent name="$PROJECT_DIR$/Assignments" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.lec06.USMS_2.USMS_Array">
+    <configuration name="JavaStarter" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="23" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="jdk.javadoc.internal.tool.Main" />
+      <module name="assn01" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Assignments/Assignment_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="assn01.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="assn02.LMS" />
+      <module name="Assignments" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="assn02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Stack2a" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lec03.Stack2a" />
+      <module name="Classwork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lec03.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaticVariables" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lec05.staticDemoLec.StaticVariables" />
+      <module name="Classwork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lec05.staticDemoLec.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="USMS_Array" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lec06.USMS_1.USMS_Array" />
+      <module name="Classwork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lec06.USMS_1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="lec06.USMS_2.USMS_Array" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lec06.USMS_2.USMS_Array" />
+      <module name="Classwork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lec06.USMS_2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="COMP-210-Data-Structures-and-Analysis" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="COMP-210-Data-Structures-and-Analysis" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="COMP-210-Data-Structures-and-Analysis" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="COMP-210-Data-Structures-and-Analysis" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.lec06.USMS_2.USMS_Array" />
+        <item itemvalue="Application.LMS" />
+        <item itemvalue="Application.USMS_Array" />
+        <item itemvalue="Application.Stack2a" />
+        <item itemvalue="Application.StaticVariables" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29a6fab6-9a5c-4ff6-8cba-e7f1535d45b2" name="Changes" comment="" />
+      <created>1736656498747</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736656498747</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Delete src directory">
+      <option name="closed" value="true" />
+      <created>1736657453719</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736657453719</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Delete src directory">
+      <option name="closed" value="true" />
+      <created>1736657505327</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1736657505327</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Delete src directory">
+      <option name="closed" value="true" />
+      <created>1736657516390</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736657516390</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Delete src directory">
+      <option name="closed" value="true" />
+      <created>1737416774408</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737416774408</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix class method">
+      <option name="closed" value="true" />
+      <created>1737417012247</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737417012247</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fix class method">
+      <option name="closed" value="true" />
+      <created>1737417060489</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737417060489</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737419002718</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737419002718</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737419686543</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737419686543</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737420020829</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737420020829</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737420058113</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737420058113</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737420298577</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737420298577</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Class stuff">
+      <option name="closed" value="true" />
+      <created>1737420955098</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737420955099</updated>
+    </task>
+    <task id="LOCAL-00013" summary="General work">
+      <option name="closed" value="true" />
+      <created>1737424756729</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737424756729</updated>
+    </task>
+    <task id="LOCAL-00014" summary="General work">
+      <option name="closed" value="true" />
+      <created>1737435458712</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737435458712</updated>
+    </task>
+    <task id="LOCAL-00015" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738289270491</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738289270491</updated>
+    </task>
+    <task id="LOCAL-00016" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738289305027</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738289305027</updated>
+    </task>
+    <task id="LOCAL-00017" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738377162222</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1738377162222</updated>
+    </task>
+    <task id="LOCAL-00018" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738377845773</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1738377845773</updated>
+    </task>
+    <task id="LOCAL-00019" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738377890489</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1738377890489</updated>
+    </task>
+    <task id="LOCAL-00020" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738378043822</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1738378043822</updated>
+    </task>
+    <task id="LOCAL-00021" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738378053589</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1738378053589</updated>
+    </task>
+    <task id="LOCAL-00022" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738378067050</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1738378067050</updated>
+    </task>
+    <task id="LOCAL-00023" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738615710157</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1738615710157</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Delete src directory" />
+    <MESSAGE value="Fix class method" />
+    <MESSAGE value="Class stuff" />
+    <MESSAGE value="General work" />
+    <option name="LAST_COMMIT_MESSAGE" value="General work" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Classwork/src/lec03/Stack3.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Classwork/src/lec03/StringDemo.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.InputMismatchException" package="java.util" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
