@@ -1,5 +1,4 @@
 # COMP 210: Data Structures and Analysis
-[![Send submodule updates to parent repo](https://github.com/sarahuston77/COMP-210-Data-Structures-and-Analysis/actions/workflows/main.yml/badge.svg)](https://github.com/sarahuston77/COMP-210-Data-Structures-and-Analysis/actions/workflows/main.yml)
 
 **Institution:** University of North Carolina at Chapel Hill  
 **Semester:** Spring 2025  
