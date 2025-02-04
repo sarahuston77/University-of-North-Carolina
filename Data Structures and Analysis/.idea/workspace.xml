@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29a6fab6-9a5c-4ff6-8cba-e7f1535d45b2" name="Changes" comment="General work">
-      <change afterPath="$PROJECT_DIR$/Classwork/src/lec06/USMS_2/USMS_Array.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classwork/src/lec06/USMS_Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classwork/src/lec06/USMS_1/USMS_Array.java" afterDir="false" />
-    </list>
+    <list default="true" id="29a6fab6-9a5c-4ff6-8cba-e7f1535d45b2" name="Changes" comment="General work" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -33,7 +29,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/sarahuston77/COMP-210-Data-Structures-and-Analysis.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/sarahuston77/University-of-North-Carolina.git&quot;,
     &quot;accountId&quot;: &quot;45feee55-4686-464f-9317-c1f818443484&quot;
   }
 }</component>
@@ -48,35 +44,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.ArrayFill.executor": "Run",
-    "Application.Arrays.executor": "Run",
-    "Application.FactRecI.executor": "Run",
-    "Application.JavaStarter (1).executor": "Run",
-    "Application.JavaStarter (2).executor": "Run",
-    "Application.JavaStarter.executor": "Run",
-    "Application.LMS.executor": "Run",
-    "Application.Stack2a.executor": "Run",
-    "Application.Stack3.executor": "Debug",
-    "Application.StaticVariables.executor": "Run",
-    "Application.StringDemo.executor": "Debug",
-    "Application.USMS_Array.executor": "Run",
-    "Application.assn01.JavaStarter.executor": "Run",
-    "Application.lec04.Arrays.executor": "Debug",
-    "Application.lec06.USMS_2.USMS_Array.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/sara/COMP-210-Data-Structures-and-Analysis/Classwork/src/lec06/USMS_2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.265625",
-    "project.structure.side.proportion": "0.22370173"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ArrayFill.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Arrays.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FactRecI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JavaStarter (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.JavaStarter (2).executor&quot;: &quot;Run&quot;,
+    &quot;Application.JavaStarter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LMS.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Stack2a.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Stack3.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.StaticVariables.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StringDemo.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.USMS_Array.executor&quot;: &quot;Run&quot;,
+    &quot;Application.assn01.JavaStarter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.lec04.Arrays.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.lec06.USMS_2.USMS_Array.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sara/Computational Statistics/Data Structures and Analysis&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.265625&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.22370173&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Classwork/src/lec06/USMS_2" />
@@ -421,7 +417,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738615710157</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738701218028</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1738701218028</updated>
+    </task>
+    <task id="LOCAL-00025" summary="General work">
+      <option name="closed" value="true" />
+      <created>1738701252975</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1738701252975</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
