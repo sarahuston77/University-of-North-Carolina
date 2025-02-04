@@ -1,0 +1,4 @@
+nano .gitmodules
+[submodule "COMP-210-Data-Structures-and-Analysis"]
+	path = COMP-210-Data-Structures-and-Analysis
+	url = https://github.com/sarahuston77/COMP-210-Data-Structures-and-Analysis.git
