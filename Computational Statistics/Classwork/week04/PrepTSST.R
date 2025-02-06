@@ -59,3 +59,4 @@ sdHRSpeech1 <- sd(TSST_HR_SR$HRSpeech_1, na.rm = TRUE)
 meanHRSpeech1
 sdHRSpeech1
 
+# Hi
