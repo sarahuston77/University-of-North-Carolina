@@ -244,6 +244,24 @@ PSYC 534 focuses on the computational application of statistical methods to solv
 
 ---
 
+# MATH 528 - Mathematical Methods for the Physical Sciences I
+
+## Course Overview
+MATH 528 covers essential mathematical methods for modeling in physics and engineering, focusing on analytical and numerical techniques.
+
+### Key Topics
+- **Laplace Transforms** – Solving differential equations
+- **Fourier Series & Transforms** – Analyzing periodic/non-periodic functions
+- **Sturm-Liouville Problems** – Eigenvalues, orthogonal functions
+- **Numerical Methods** – Approximating solutions for complex models
+
+### Learning Outcomes
+- Apply Laplace & Fourier transforms to physical systems
+- Solve Sturm-Liouville problems for mathematical physics
+- Use numerical methods for real-world applications
+- Implement symbolic computing for problem-solving
+
+
 ## Benefits of Studying at the University of North Carolina
 
 - **High-Quality Education:** The University of North Carolina is renowned for its rigorous academic standards and innovative research, providing students with a top-tier education in computer science and mathematics.
