@@ -49,3 +49,40 @@ gseas + geom_violin() +
        subtitle="Wind vs Seasons",
        x="Season",
        y="Wind")
+
+source("/Users/kgates/Google Drive/Classes/compstat/Spring 20")
+TSST_HR_SR$negEmotion <- with(TSST_HR_SR,
+(emo_sad + emo_afraid + emo_unh
++ emo_guilty + emo_stressed
++ emo_frustrated + emo_bored
++ emo_panicky + emo_embarrasse
++ emo_anxious + emo_distressed
++ emo_disgusted + emo_irritiab
++ emo_annoyed))
+
+plot(airquality[,1:4])
+
+require(ggplot2)
+ggplot(data = airquality,
+       mapping = aes(Wind, Temp)) + geom_point()
+
+ggplot(data = airquality,
+       mapping = aes(Wind, Temp)) + geom_point() +
+  ylab("Temperature")
+
+myPlot + theme_bw()
+
+myPlot + theme(panel.background =
+                 element_rect(fill = "hotpink")) +
+  labs(title = "Wind and Temperature")
+
+ggplot( airquality , aes(x=Wind, y=Temp)) +
+  geom_point(size=3) +
+  facet_wrap(~seasons) +
+  theme(legend.position="none")
+
+ggplot( airquality , aes(x=Wind, y=Temp)) +
+  geom_point(size=3) +
+  facet_wrap(~seasons, dir ="v") +
+  theme(legend.position="none")
+
