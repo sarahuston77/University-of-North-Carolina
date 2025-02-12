@@ -63,6 +63,8 @@ public class LList {
             if (_head == _tail) {     // case 2a. Only 1 node
                 if (_head._value == value) {
                     _head = null;
+                    _tail = null;
+                    _size--;
                     return (true);
                 } else {
                     return (false);
@@ -71,13 +73,18 @@ public class LList {
             else {                 // case 2b. 2+ nodes
                 if (_head._value == value) { // case 2b.1 at head
                     _head = _head._nextNode;
+                    _size--;
                     return (true);
                 } else {                      // case 2b.2. not at head
                     Node previous = _head;
                     while (previous._nextNode != null) {
                         if (previous._nextNode._value == value) {
+                            previous._nextNode = previous._nextNode._nextNode;
+                            _size--;
 
-                                previous._nextNode = previous._nextNode._nextNode;
+                            if (previous._nextNode == null){
+                                _tail = previous;
+                            }
                             return (true);
                         }
                         else previous = previous._nextNode;
