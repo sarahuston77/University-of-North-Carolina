@@ -81,3 +81,23 @@ w1234[paste("difference_", score_variables, sep = "")] <- abs(w1234[paste("c01",
 # "atod" has the greatest average absolute change
 ave_abs_change <- colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
 ave_abs_change[which.max(ave_abs_change)]
+
+w1234$gender_r[w1234$c01gender == 1] <- "male"
+w1234$gender_r[w1234$c01gender == 2] <- "female"
+
+# Create a new variable called "newedu" w/ various levels
+w1234$new_edu[w1234$fameduc < 7 & !is.na(w1234$fameduc)] <- "Elementary"
+w1234$new_edu[w1234$fameduc >= 7 & w1234$fameduc < 13 & !is.na(w1234$fameduc)] <- "High School"
+w1234$new_edu[w1234$fameduc >= 13 & w1234$fameduc < 17 & !is.na(w1234$fameduc)] <- "College"
+w1234$new_edu[w1234$fameduc >= 17 & !is.na(w1234$fameduc)] <- "More than College"
+
+# Order the levels and create the factor
+w1234$new_edu <- factor(c(w1234$new_edu), levels = c("Elementary", "High School", "College", "More than College"))
+
+# Create a box plot with education levels and educational experiences at wave 4
+g <- ggplot(data = w1234, mapping = aes(new_edu, w1234$c04edex01))
+g + geom_boxplot(data = w1234, mapping = aes(new_edu, w1234$c04edex01), size = 10, varwidth=T) +
+  labs(title = "Education Expectations Against Parental Education", x = "Education", y ="Educational Expectations at Wave 4") + geom_bar(stat='summary', y = w1234$c04edex01) + geom_errorbar(stat='summary', width=.2)
+
+
+
