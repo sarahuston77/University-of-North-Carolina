@@ -1,4 +1,25 @@
-# Read in files based off of path, type, and headers with specific NA values accounted for
+---
+title: "Plots"
+author: "Sara Huston"
+output: pdf_document
+---
+# Assignment 1
+## Data Manipulation
+### Install and load all required pacakges (Don't install in rmd)
+```{r}
+# install.packages("dplyr")
+# install.packages("tidyverse")
+# install.packages("gridExtra")
+# install.packages("ggcorrplot")
+
+library("ggcorrplot")
+library("gridExtra")
+library("tidyverse")
+library("dplyr")
+```
+
+### Read in files based off of path, type, and headers with specific NA values accounted for
+```{r}
 w1_child <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w1_child.csv",
                      header = TRUE, na.strings = c("9", "8", "98", "99"))
 w2_child <- read.table("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w2_child.dat",
@@ -10,36 +31,34 @@ w4_child <- read.csv("~/Computational Statistics/Computational Statistics/Assign
 names_w4_child <- read.table("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/names_w4_child.txt")
 educinc <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/educinc.csv",
                     header = TRUE, na.strings = c("."))
-
-# Add transposed variable names to w4_child based off of the provided text file
+```
+### Add transposed variable names to w4_child based off of the provided text file
+```{r}
 names(w4_child) <- t(names_w4_child)
-
-# Make all headers into lower case for easier merging
+```
+### Make all headers into lower case for easier merging
+```{r}
 names(w1_child) <- tolower(names(w1_child))
 names(w2_child) <- tolower(names(w2_child))
 names(w3_child) <- tolower(names(w3_child))
 names(w4_child) <- tolower(names(w4_child))
 names(educinc) <- tolower(names(educinc))
-
-# install.packages("dplyr")
-# install.packages("tidyverse")
-library("tidyverse")
-library("dplyr")
-
-# Merge files by famid and select specified variables
+```
+### Merge files by famid and select specified variables
+```{r}
 w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
-            %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
-                                   contains("atts"), contains("pcmp"), contains("attt"),
-                                   contains("dscr"), contains("atod"), fameduc, income, c01sibli, contains("edex"))
-
-# View variables to double check things
-names(w1234)
-
-# Reverse code for pcmp 1 and 2
+          %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, 
+          c01gender, c01school, c01sibli, contains("atts"), contains("pcmp"),
+          contains("attt"), contains("dscr"), contains("atod"), fameduc, income,
+          c01sibli, contains("edex"))
+```
+### Reverse code for pcmp 1 and 2
+```{r}
 pcmp_01_02_cols <- c(grep("pcmp01", names(w1234)), grep("pcmp02", names(w1234)))
 w1234[ ,pcmp_01_02_cols] <- 5 - w1234[ ,pcmp_01_02_cols]
-
-# Compute averages based on sets of columns for variable sets and place average into a new variable
+```
+### Compute averages based on sets of columns for variable sets and place average into a new variable
+```{r}
 w1234$c01attt <- rowMeans(w1234[c(grep("c01attt", names(w1234)))], na.rm = TRUE)
 w1234$c04attt <- rowMeans(w1234[c(grep("c04attt", names(w1234)))], na.rm = TRUE)
 
@@ -56,60 +75,76 @@ w1234$c04atts <- rowMeans(w1234[c("c01atts03", "c04atts07", "c04atts08", "c04att
 
 w1234$c01atod <- rowSums(w1234[c("c01atod01", "c01atod02", "c01atod03", "c01atod04", "c01atod05", "c01atod06", "c01atod07", "c01atod08", "c01atod09")], na.rm = TRUE)
 w1234$c04atod <- rowSums(w1234[c("c04atod01", "c04atod02", "c04atod03", "c04atod04", "c04atod05", "c04atod06", "c04atod07", "c04atod08", "c04atod09")], na.rm = TRUE)
-
-## Final Quiz Questions
-
-# 1) Dimension of your final data frame (row x column)
+```
+## Quiz Questions
+### 1) Dimension of your final data frame (row x column)
+```{r}
 dim(w1234)
-
-# 2) What is the max average education level obtained by parents (“fameduc”)?
+```
+### 2) What is the max average education level obtained by parents (“fameduc”)?
+```{r}
 max_educ <- max(w1234$fameduc, na.rm = TRUE)
 max_educ
-
-# 3) How many children have parents with this level of education?
+```
+### 3) How many children have parents with this level of education?
+```{r}
 sum(w1234$fameduc >= max_educ, na.rm = TRUE)
-
-# 4) What is the mean for variable “c01attt” for those who have 4 siblings?
+```
+### 4) What is the mean for variable “c01attt” for those who have 4 siblings?
+```{r}
 four_sibs <- w1234[w1234$c01sibli == 4 & !is.na(w1234$c01sibli), ]
 mean(four_sibs$c01attt)
-
-# 5) Create difference scores between Waves 1 and 4 for all scales. Which scale has
+```
+### 5) Create difference scores between Waves 1 and 4 for all scales. Which scale has
 # the greatest average absolute change (i.e., difference)?
+```{r}
 score_variables <- c("atts", "pcmp", "attt", "dscr", "atod")
 w1234[paste("difference_", score_variables, sep = "")] <- abs(w1234[paste("c01", score_variables, sep = "")] - w1234[paste("c04", score_variables, sep = "")])
-
-# "atod" has the greatest average absolute change
 ave_abs_change <- colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
 ave_abs_change[which.max(ave_abs_change)]
+```
 
+# Assignment 2 
+## Plots
+### Plot 1
+#### Recode gender variables
+```{r}
 w1234$gender_r[w1234$c01gender == 1] <- "male"
 w1234$gender_r[w1234$c01gender == 2] <- "female"
-
-# Create a new variable called "newedu" w/ various levels
+```
+#### Create a new variable called "newedu" w/ various levels of education
+```{r}
 w1234$new_edu[w1234$fameduc < 7 & !is.na(w1234$fameduc)] <- "Elementary"
 w1234$new_edu[w1234$fameduc >= 7 & w1234$fameduc < 13 & !is.na(w1234$fameduc)] <- "High School"
 w1234$new_edu[w1234$fameduc >= 13 & w1234$fameduc < 17 & !is.na(w1234$fameduc)] <- "College"
 w1234$new_edu[w1234$fameduc >= 17 & !is.na(w1234$fameduc)] <- "More than College"
-
-# Order the levels and create the factor
+```
+#### Order the education levels and factor
+```{r}
 w1234$new_edu <- factor(c(w1234$new_edu), levels = c("Elementary", "High School", "College", "More than College"), exclude = NA)
-
-# Remove na from each plot
+```
+#### Remove na from each plot
+```{r}
 w1234_clean <- subset(w1234, !is.na(new_edu) & !is.na(c04edex01) & !is.na(fameduc))
-
-# Create a box plot with education levels and educational experiences at wave 4
+```
+#### Create a box plot with education levels and educational experiences at wave 4
+```{r}
 g <- ggplot(data = w1234_clean, mapping = aes(new_edu, c04edex01))
 g + geom_boxplot(data = w1234_clean, mapping = aes(new_edu, c04edex01), varwidth=T, fill = 'lightblue') +
   labs(title = "Education Expectations Against Parental Education", x = "Education", y ="Educational Expectations at Wave 4")
-
-# Create a scatter plot with educational expectations at wave 4 (c04edex01) on the Y-axis with “fameduc” on the X axis
+```
+### Plot 2
+#### Create a scatter plot with educational expectations at wave 4 (c04edex01) on the Y-axis with “fameduc” on the X axis
+```{r}
 ggplot(data = w1234_clean, mapping = aes(x = fameduc, y = c04edex01, color = gender_r, shape = gender_r)) + geom_point() + 
   labs(title = "Children’s Educational Expectations by Family Education with gender.",
        x = "Family Education", y = "Educational Expectations at Wave 4") + 
   scale_shape_discrete(name ="Gender", breaks = c("female", "male"), labels = c("Woman", "Man")) +
   scale_colour_discrete(name ="Gender", breaks = c("female", "male"), labels = c("Woman", "Man"))
-
-# Plot histograms of perceived discrimination and use of alcohol, tobacco, or other drugs at waves 1 and 4
+```
+### Plot 3
+#### Plot histograms of perceived discrimination and use of alcohol, tobacco, or other drugs at waves 1 and 4
+```{r}
 t1 <- ggplot(data = subset(w1234, !is.na(c01atod)), mapping = aes(c01atod))
 t2 <- ggplot(data = subset(w1234, !is.na(c04atod)), mapping = aes(c04atod))
 t3 <- ggplot(data = subset(w1234, !is.na(c01dscr)), mapping = aes(c01dscr))
@@ -120,20 +155,22 @@ g2 <- t2 + geom_histogram(fill = "skyblue", binwidth = 0.7)+ labs(x = "Use of al
 g3 <- t3 + geom_histogram(fill = "mediumblue", binwidth = 0.2)+ labs(x = "Perceived discrimination at Wave 1")
 g4 <- t4 + geom_histogram(fill = "navyblue", binwidth = 0.3)+ labs(x = "Perceived discrimination at Wave 4")
 
-# install.packages("gridExtra")
-library(gridExtra)
 grid.arrange(g1, g2, g3, g4, ncol = 2, nrow = 2)
+```
 
-# Describe the distributions in two sentences
-# Perceived discrimination decreases from wave 1 to wave 4, with an increase of ~100 in 1 scores.
-# Alcohol, tobacco, or other drug use increased heavily from wave 1 to wave 4. 
+### Describe the distributions in two sentences: Perceived discrimination decreases from wave 1 to wave 4, with an increase of ~100 in 1 scores. Alcohol, tobacco, or other drug use increased heavily from wave 1 to wave 4. 
 
-# Create a correlogram for all 5 scales at Wave 4
+### Plot 4
+#### Create a correlogram for all 5 scales at Wave 4
+```{r}
 cor_scales <- cor(w1234[, c("c04attt", "c04atod", "c04dscr", "c04atts", "c04pcmp")], use = "complete.obs")
 cor_scales <- round(cor_scales, 2)
-install.packages("ggcorrplot")
-library(ggcorrplot)
 ggcorrplot(cor_scales) + labs(title = "Correlogram for all scales at wave 4") +
   scale_fill_gradient2(name="Pearson\nCorrelation")
+```
+
+## Quiz Questions
+
+
 
 

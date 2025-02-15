@@ -28,9 +28,9 @@ library("dplyr")
 
 # Merge files by famid and select specified variables
 w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
-            %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
-                                   contains("atts"), contains("pcmp"), contains("attt"),
-                                   contains("dscr"), contains("atod"), fameduc, income, c01sibli, contains("edex"))
+          %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
+                                                                 contains("atts"), contains("pcmp"), contains("attt"),
+                                                                 contains("dscr"), contains("atod"), fameduc, income, c01sibli, contains("edex"))
 
 # View variables to double check things
 names(w1234)
@@ -131,9 +131,7 @@ grid.arrange(g1, g2, g3, g4, ncol = 2, nrow = 2)
 # Create a correlogram for all 5 scales at Wave 4
 cor_scales <- cor(w1234[, c("c04attt", "c04atod", "c04dscr", "c04atts", "c04pcmp")], use = "complete.obs")
 cor_scales <- round(cor_scales, 2)
-install.packages("ggcorrplot")
+# install.packages("ggcorrplot")
 library(ggcorrplot)
 ggcorrplot(cor_scales) + labs(title = "Correlogram for all scales at wave 4") +
   scale_fill_gradient2(name="Pearson\nCorrelation")
-
-
