@@ -250,7 +250,13 @@ cor_scales <- round(cor_scales, 2)
 ggcorrplot(cor_scales) + labs(title = "Correlogram for all scales at wave 4") +
   scale_fill_gradient2(name="Pearson\nCorrelation")
 ```
+#### Report in words which variables seem to be correlated.
+- Child’s peer competence (pcmp) seems to be correlated with child’s attachment to teachers (attt) and child’s attachment to school (atts). Child's attachment to teachers (attt) and child's attachement to school (atts) appear also correlated. 
 
-## Quiz Questions
+## Analysis Questions
+
+```{r}
+
+```
 
 ```
