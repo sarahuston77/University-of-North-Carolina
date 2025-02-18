@@ -1,14 +1,9 @@
 ---
 title: "Plots"
 author: "Sara Huston"
-output: pdf_document
-pdf_document:
-    fig_caption: yes
-    fig_crop: no
-    fig_height: 2
-    fig_width: 3
-    keep_tex: no
-    number_sections: yes
+output:
+  pdf_document:
+    number_sections: no
     toc: yes
     toc_depth: 2
 header-includes: 
@@ -20,8 +15,6 @@ header-includes:
 
 ## Data Manipulation
 
-
-### Install and load all required packages (Don't install in rmd)
 ```{r LoadData, message=FALSE, warning=FALSE, include=FALSE}
 # DO NOT SHOW IN FINAL REPORT
 options(tinytex.verbose = TRUE)
@@ -37,11 +30,16 @@ opts_chunk$set(fig.align='center',
                external=TRUE,
                echo=TRUE,
                warning=FALSE,
-               fig.pos='H'
+               fig.pos='H', 
+               tidy.opts=list(width.cutoff=60),
+               tidy=TRUE,
+               warning = FALSE
                )
 ```
 
-```{r}
+### Install and load all required packages (Don't install in rmd)
+
+```{r, message=FALSE}
 # install.packages("dplyr")
 # install.packages("tidyverse")
 # install.packages("gridExtra")
@@ -55,19 +53,20 @@ library("dplyr")
 library("formatR")
 ```
 
-### Read in files based off of path, type, and headers with specific NA values accounted for
+### Read in files based on type, headers, and with specific NA values accounted for
 
 ```{r}
-w1_child <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w1_child.csv",
+setwd("./Data")
+w1_child <- read.csv("w1_child.csv",
                      header = TRUE, na.strings = c("9", "8", "98", "99"))
-w2_child <- read.table("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w2_child.dat",
+w2_child <- read.table("w2_child.dat",
                        header = TRUE, , na.strings = c("-999"))
-w3_child <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w3_child.csv",
+w3_child <- read.csv("w3_child.csv",
                      header = TRUE, na.strings = c("9", "8", "98", "99"))
-w4_child <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/w4_child.csv",
+w4_child <- read.csv("w4_child.csv",
                      header = FALSE, na.strings = c("9", "8", "98", "99"))
-names_w4_child <- read.table("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/names_w4_child.txt")
-educinc <- read.csv("~/Computational Statistics/Computational Statistics/Assignments/Assignment 1/Data/educinc.csv",
+names_w4_child <- read.table("names_w4_child.txt")
+educinc <- read.csv("educinc.csv",
                     header = TRUE, na.strings = c("."))
 ```
 
@@ -89,7 +88,7 @@ names(educinc) <- tolower(names(educinc))
 
 ### Merge files by famid and select specified variables
 
-```{r}
+```{r, warning=FALSE}
 w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
           %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, 
           c01gender, c01school, c01sibli, contains("atts"), contains("pcmp"),
@@ -118,7 +117,7 @@ w1234$c04dscr <- rowMeans(w1234[c("c04dscr07", "c04dscr08", "c04dscr09", "c04dsc
 
 w1234$c01atts <- rowMeans(w1234[c("c01atts03", "c01atts07", "c01atts08", "c01atts10")], na.rm = TRUE)
 w1234$c02atts <- rowMeans(w1234[c("c02atts03", "c02atts07", "c02atts08", "c02atts10")], na.rm = TRUE)
-w1234$c02atts <- rowMeans(w1234[c("c03atts03", "c03atts07", "c03atts08", "c03atts10")], na.rm = TRUE)
+w1234$c03atts <- rowMeans(w1234[c("c03atts03", "c03atts07", "c03atts08", "c03atts10")], na.rm = TRUE)
 w1234$c04atts <- rowMeans(w1234[c("c01atts03", "c04atts07", "c04atts08", "c04atts10")], na.rm = TRUE)
 
 w1234$c01atod <- rowSums(w1234[c("c01atod01", "c01atod02", "c01atod03", "c01atod04", "c01atod05", "c01atod06", "c01atod07", "c01atod08", "c01atod09")], na.rm = TRUE)
@@ -150,16 +149,23 @@ sum(w1234$fameduc >= max_educ, na.rm = TRUE)
 
 ```{r}
 four_sibs <- w1234[w1234$c01sibli == 4 & !is.na(w1234$c01sibli), ]
-mean(four_sibs$c01attt)
+mean(four_sibs$c01attt, na.rm = T)
 ```
 
 ### 5) Create difference scores between Waves 1 and 4 for all scales. Which scale has the greatest average absolute change (i.e., difference)?
 
 ```{r}
 score_variables <- c("atts", "pcmp", "attt", "dscr", "atod")
-w1234[paste("difference_", score_variables, sep = "")] <- abs(w1234[paste("c01", score_variables, sep = "")] - w1234[paste("c04", score_variables, sep = "")])
-ave_abs_change <- colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
+w1234[paste("difference_", score_variables, sep = "")] <- w1234[paste("c01", score_variables, sep = "")] - w1234[paste("c04", score_variables, sep = "")]
+ave_abs_change <- abs(colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE))
+ave_abs_change
 ave_abs_change[which.max(ave_abs_change)]
+
+abs(mean(w1234$c01atts - w1234$c04atts, na.rm = TRUE))
+abs(mean(w1234$c01pcmp - w1234$c04pcmp, na.rm = TRUE))
+abs(mean(w1234$c01attt - w1234$c04attt, na.rm = TRUE))
+abs(mean(w1234$c01dscr - w1234$c04dscr, na.rm = TRUE))
+abs(mean(w1234$c01atod - w1234$c04atod, na.rm = TRUE))
 ```
 
 # Assignment 2
@@ -169,6 +175,7 @@ ave_abs_change[which.max(ave_abs_change)]
 ### Plot 1
 
 #### Recode gender variables
+
 ```{r}
 w1234$gender_r[w1234$c01gender == 1] <- "male"
 w1234$gender_r[w1234$c01gender == 2] <- "female"
@@ -227,8 +234,8 @@ t2 <- ggplot(data = subset(w1234, !is.na(c04atod)), mapping = aes(c04atod))
 t3 <- ggplot(data = subset(w1234, !is.na(c01dscr)), mapping = aes(c01dscr))
 t4 <- ggplot(data = subset(w1234, !is.na(c04dscr)), mapping = aes(c04dscr))
 
-g1 <- t1 + geom_histogram(fill = "lightblue", binwidth = 0.8)+ labs(x = "Use of alcohol, tobacco, or other drugs at Wave 1")
-g2 <- t2 + geom_histogram(fill = "skyblue", binwidth = 0.7)+ labs(x = "Use of alcohol, tobacco, or other drugs at Wave 4")
+g1 <- t1 + geom_histogram(fill = "lightblue", binwidth = 0.8)+ labs(x = "Drug usage at Wave 1")
+g2 <- t2 + geom_histogram(fill = "skyblue", binwidth = 0.7)+ labs(x = "Drug usage at Wave 4")
 g3 <- t3 + geom_histogram(fill = "mediumblue", binwidth = 0.2)+ labs(x = "Perceived discrimination at Wave 1")
 g4 <- t4 + geom_histogram(fill = "navyblue", binwidth = 0.3)+ labs(x = "Perceived discrimination at Wave 4")
 
@@ -250,13 +257,29 @@ cor_scales <- round(cor_scales, 2)
 ggcorrplot(cor_scales) + labs(title = "Correlogram for all scales at wave 4") +
   scale_fill_gradient2(name="Pearson\nCorrelation")
 ```
+
 #### Report in words which variables seem to be correlated.
-- Child’s peer competence (pcmp) seems to be correlated with child’s attachment to teachers (attt) and child’s attachment to school (atts). Child's attachment to teachers (attt) and child's attachement to school (atts) appear also correlated. 
+
+-   Child’s peer competence (pcmp) seems to be correlated with child’s attachment to teachers (attt) and child’s attachment to school (atts). Child's attachment to teachers (attt) and child's attachement to school (atts) appear also correlated.
 
 ## Analysis Questions
 
+### 1) Conduct 2 tests of mean differences
+
 ```{r}
-
+hs_group <- subset(w1234, new_edu == "High School" & !is.na(c04edex01))
+college_group <- subset(w1234, new_edu == "College" & !is.na(c04edex01))
+t.test(hs_group$c04edex01, college_group$c04edex01, parid = TRUE)
+t.test(w1234$c01atod, w1234$c04atod, paird = TRUE)
 ```
 
+#### There was a significant difference in educational expectations at wave 4 between those whose parents have a high school education and those whos parents have a college education. There was a significant difference on alcohol, tobacco, and other drug use between wave 1 and wave 4.
+
+### 2) Two tests for significant correlations
+
+```{r}
+cor.test(w1234$c04attt, w1234$c04pcmp, na.action=na.omit)
+cor.test(w1234$c04dscr, w1234$c04atod, na.action=na.omit)
 ```
+
+#### There was a significant difference at wave 4 between child’s peer competence and child’s attachment to teachers. There was not a significant difference at wave 4 between child's alcohol, tobacco, and other drug use and child’s perceived discrimination.

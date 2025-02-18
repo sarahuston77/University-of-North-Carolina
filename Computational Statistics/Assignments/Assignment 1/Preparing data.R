@@ -30,7 +30,7 @@ library("dplyr")
 w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
             %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, c01gender, c01school, c01sibli, 
                                    contains("atts"), contains("pcmp"), contains("attt"),
-                                   contains("dscr"), contains("atod"), fameduc, income, c01sibli, contains("edex"))
+                                   contains("dscr"), contains("atod"), fameduc, income, c01sibli)
 
 # View variables to double check things
 names(w1234)
@@ -81,59 +81,3 @@ w1234[paste("difference_", score_variables, sep = "")] <- abs(w1234[paste("c01",
 # "atod" has the greatest average absolute change
 ave_abs_change <- colMeans(w1234[ , c("difference_atts", "difference_pcmp", "difference_attt", "difference_dscr", "difference_atod")], na.rm = TRUE)
 ave_abs_change[which.max(ave_abs_change)]
-
-w1234$gender_r[w1234$c01gender == 1] <- "male"
-w1234$gender_r[w1234$c01gender == 2] <- "female"
-
-# Create a new variable called "newedu" w/ various levels
-w1234$new_edu[w1234$fameduc < 7 & !is.na(w1234$fameduc)] <- "Elementary"
-w1234$new_edu[w1234$fameduc >= 7 & w1234$fameduc < 13 & !is.na(w1234$fameduc)] <- "High School"
-w1234$new_edu[w1234$fameduc >= 13 & w1234$fameduc < 17 & !is.na(w1234$fameduc)] <- "College"
-w1234$new_edu[w1234$fameduc >= 17 & !is.na(w1234$fameduc)] <- "More than College"
-
-# Order the levels and create the factor
-w1234$new_edu <- factor(c(w1234$new_edu), levels = c("Elementary", "High School", "College", "More than College"), exclude = NA)
-
-# Remove na from each plot
-w1234_clean <- subset(w1234, !is.na(new_edu) & !is.na(c04edex01) & !is.na(fameduc))
-
-# Create a box plot with education levels and educational experiences at wave 4
-g <- ggplot(data = w1234_clean, mapping = aes(new_edu, c04edex01))
-g + geom_boxplot(data = w1234_clean, mapping = aes(new_edu, c04edex01), varwidth=T, fill = 'lightblue') +
-  labs(title = "Education Expectations Against Parental Education", x = "Education", y ="Educational Expectations at Wave 4")
-
-# Create a scatter plot with educational expectations at wave 4 (c04edex01) on the Y-axis with “fameduc” on the X axis
-ggplot(data = w1234_clean, mapping = aes(x = fameduc, y = c04edex01, color = gender_r, shape = gender_r)) + geom_point() + 
-  labs(title = "Children’s Educational Expectations by Family Education with gender.",
-       x = "Family Education", y = "Educational Expectations at Wave 4") + 
-  scale_shape_discrete(name ="Gender", breaks = c("female", "male"), labels = c("Woman", "Man")) +
-  scale_colour_discrete(name ="Gender", breaks = c("female", "male"), labels = c("Woman", "Man"))
-
-# Plot histograms of perceived discrimination and use of alcohol, tobacco, or other drugs at waves 1 and 4
-t1 <- ggplot(data = subset(w1234, !is.na(c01atod)), mapping = aes(c01atod))
-t2 <- ggplot(data = subset(w1234, !is.na(c04atod)), mapping = aes(c04atod))
-t3 <- ggplot(data = subset(w1234, !is.na(c01dscr)), mapping = aes(c01dscr))
-t4 <- ggplot(data = subset(w1234, !is.na(c04dscr)), mapping = aes(c04dscr))
-
-g1 <- t1 + geom_histogram(fill = "lightblue", binwidth = 0.8)+ labs(x = "Use of alcohol, tobacco, or other drugs at Wave 1")
-g2 <- t2 + geom_histogram(fill = "skyblue", binwidth = 0.7)+ labs(x = "Use of alcohol, tobacco, or other drugs at Wave 4")
-g3 <- t3 + geom_histogram(fill = "mediumblue", binwidth = 0.2)+ labs(x = "Perceived discrimination at Wave 1")
-g4 <- t4 + geom_histogram(fill = "navyblue", binwidth = 0.3)+ labs(x = "Perceived discrimination at Wave 4")
-
-# install.packages("gridExtra")
-library(gridExtra)
-grid.arrange(g1, g2, g3, g4, ncol = 2, nrow = 2)
-
-# Describe the distributions in two sentences
-# Perceived discrimination decreases from wave 1 to wave 4, with an increase of ~100 in 1 scores.
-# Alcohol, tobacco, or other drug use increased heavily from wave 1 to wave 4. 
-
-# Create a correlogram for all 5 scales at Wave 4
-cor_scales <- cor(w1234[, c("c04attt", "c04atod", "c04dscr", "c04atts", "c04pcmp")], use = "complete.obs")
-cor_scales <- round(cor_scales, 2)
-install.packages("ggcorrplot")
-library(ggcorrplot)
-ggcorrplot(cor_scales) + labs(title = "Correlogram for all scales at wave 4") +
-  scale_fill_gradient2(name="Pearson\nCorrelation")
-
-
