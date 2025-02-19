@@ -44,10 +44,9 @@ public class Main {
 
         // Test task 3
         LinkedList list2 = new LinkedList();
-        list2.add(10);
-        list2.add(30);
-        list2.add(5);
-        list2.add(5);
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
 
         System.out.println("list2 = " + list2.toString());
         System.out.println("Task 3: list == list2 ?: " + list.isEqual(list2));

@@ -96,33 +96,15 @@ public class LinkedList {
         Node current = _head;
         Node after;
 
-        while (current != null){
+        while (current != null) {
             after = current.getNext();
             current.setNext(before);
             before = current;
             current = after;
 
-//        switch(_size){
-//            case (0), (1): return;
-//            default:
-//                Node p1 = _head;
-//                Node p2 = _head.getNext();
-//                Node p3 = _head.getNext().getNext();
-//                for (int i = 0; i < _size; i++){
-//                    p1.setNext(p3);
-//                    p2.setNext(_head);
-//                    _head = p2;
-//                    p2 = p3;
-//                    if (null != p3.getNext()){
-//                        p3 = p3.getNext();
-//                    }else {
-//                        p1.setNext(null);
-//                        p3.setNext(_head);
-//                        _head = p3;
-//                        break;}
-            }
-        _tail = _head;
-        _head = before;
+            _tail = _head;
+            _head = before;
+        }
     }
 
     /**
@@ -144,9 +126,12 @@ public class LinkedList {
      * @param list2
      */
     public void merge(LinkedList list2) {
-        // TODO
+        int k = 1;
+        for (int i = 0; i < list2._size; i++){
+            add(k, list2.get(i));
+            k += 2;
+        }
     }
-
 
     /* Implementations below are being given to you. Do not modify below this. */
 
