@@ -1,1 +1,4 @@
 zip -r assn0x_submission.zip src/assn0x
+
+zip -r assn03_submission.zip src/assn03
+zip -r assn02_submission.zip src/assn02

@@ -1,4 +1,4 @@
-package assn03.assn03StarterCode;
+package assn03;
 
 public interface Node {
 

@@ -1,4 +1,4 @@
-package assn03.assn03StarterCode;
+package assn03;
 
 // Starter Code provided with Assignment #3 for COMP210
 
