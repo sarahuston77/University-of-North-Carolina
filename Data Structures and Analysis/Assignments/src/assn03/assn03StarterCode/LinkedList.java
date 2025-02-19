@@ -42,7 +42,6 @@ public class LinkedList {
             throw new IndexOutOfBoundsException();
         }
         remove(get(i));
-        _size--;
     }
 
     /**
@@ -62,8 +61,12 @@ public class LinkedList {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        // TODO
-
+        if (_size != list2._size)
+            return false;
+        for (int i = 0; i < _size; i++){
+            if (get(i) != list2.get(i))
+                return false;
+        }
         return true;    // Change this statement as required
     }
 
@@ -75,8 +78,11 @@ public class LinkedList {
      *
      */
     public void removeRepeats() {
-        // TODO
-
+        for (int i = 0; i < _size - 1; i++){
+            if (get(i) == get(i + 1)) {
+                remove(get(i));
+            }
+        }
     }
 
      /**
@@ -86,7 +92,37 @@ public class LinkedList {
      * list after reverse: 7 -> 8 -> 9 -> 10
      */
     public void reverse() {
-        // TODO
+        Node before = null;
+        Node current = _head;
+        Node after;
+
+        while (current != null){
+            after = current.getNext();
+            current.setNext(before);
+            before = current;
+            current = after;
+
+//        switch(_size){
+//            case (0), (1): return;
+//            default:
+//                Node p1 = _head;
+//                Node p2 = _head.getNext();
+//                Node p3 = _head.getNext().getNext();
+//                for (int i = 0; i < _size; i++){
+//                    p1.setNext(p3);
+//                    p2.setNext(_head);
+//                    _head = p2;
+//                    p2 = p3;
+//                    if (null != p3.getNext()){
+//                        p3 = p3.getNext();
+//                    }else {
+//                        p1.setNext(null);
+//                        p3.setNext(_head);
+//                        _head = p3;
+//                        break;}
+            }
+        _tail = _head;
+        _head = before;
     }
 
     /**

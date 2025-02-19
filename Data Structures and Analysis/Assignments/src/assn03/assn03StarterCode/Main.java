@@ -44,23 +44,28 @@ public class Main {
 
         // Test task 3
         LinkedList list2 = new LinkedList();
-        list2.add(100);
-        list2.add(200);
+        list2.add(10);
+        list2.add(30);
+        list2.add(5);
+        list2.add(5);
+
         System.out.println("list2 = " + list2.toString());
-        System.out.println("Task 3: list == list2 ?: " + list.isEqual(list2)); // not yet implemented
+        System.out.println("Task 3: list == list2 ?: " + list.isEqual(list2));
 
         // Test task 4
-        System.out.println("list before removing repeats = " + list.toString());
-        list.removeRepeats();
-        System.out.println("Task 4: list after removing repeats = " + list.toString());
+        System.out.println("list before removing repeats = " + list2.toString());
+        list2.removeRepeats();
+        System.out.println("Task 4: list after removing repeats = " + list2.toString());
 
         // Test task 5
-        list.add(40);
-        list.add(50);
-        list.add(60);
-        System.out.println("list before reversing = " + list.toString());
-        list.reverse();
-        System.out.println("Task 5: list after reversing = " + list.toString());
+        LinkedList list5 = new LinkedList();
+        list5.add(10);
+        list5.add(9);
+        list5.add(8);
+        list5.add(7);
+        System.out.println("list before reversing = " + list5.toString());
+        list5.reverse();
+        System.out.println("Task 5: list after reversing = " + list5.toString());
 
         // Test task 6
         System.out.println("list before merging = " + list.toString());
