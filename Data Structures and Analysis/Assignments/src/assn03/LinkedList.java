@@ -22,6 +22,7 @@ public class LinkedList {
     public void simpleMerge(LinkedList list2) {
         _tail.setNext(list2._head);
         _size += list2.size();
+        _tail = list2._tail;
     }
 
     /**
@@ -126,10 +127,15 @@ public class LinkedList {
      * @param list2
      */
     public void merge(LinkedList list2) {
-        int k = 1;
-        for (int i = 0; i < list2._size; i++){
-            add(k, list2.get(i));
-            k += 2;
+        Node prev = _head;
+        Node curr = list2.gethead();
+        Node next = _head.getNext();
+
+        while (curr != null){
+            prev.setNext(curr);
+            prev = curr;
+            curr = next;
+            next = prev.getNext();
         }
     }
 

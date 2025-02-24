@@ -67,6 +67,8 @@ public class Main {
         System.out.println("Task 5: list after reversing = " + list5.toString());
 
         // Test task 6
+        list.remove(10);
+        list.remove(30);
         System.out.println("list before merging = " + list.toString());
         System.out.println("list2 before merging = " + list2.toString());
         list.merge(list2);
