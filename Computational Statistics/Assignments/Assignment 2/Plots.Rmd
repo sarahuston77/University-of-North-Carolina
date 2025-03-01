@@ -68,7 +68,7 @@ w4_child <- read.csv("w4_child.csv",
 names_w4_child <- read.table("names_w4_child.txt")
 educinc <- read.csv("educinc.csv",
                     header = TRUE, na.strings = c("."))
-```
+``` 
 
 ### Add transposed variable names to w4_child based off of the provided text file
 
@@ -177,8 +177,8 @@ abs(mean(w1234$c01atod - w1234$c04atod, na.rm = TRUE))
 #### Recode gender variables
 
 ```{r}
-w1234$gender_r[w1234$c01gender == 1] <- "male"
-w1234$gender_r[w1234$c01gender == 2] <- "female"
+w1234$gender_r[w1234$c01gender == 1] <- "female"
+w1234$gender_r[w1234$c01gender == 2] <- "male"
 ```
 
 #### Create a new variable called "newedu" w/ various levels of education
@@ -188,6 +188,8 @@ w1234$new_edu[w1234$fameduc < 7 & !is.na(w1234$fameduc)] <- "Elementary"
 w1234$new_edu[w1234$fameduc >= 7 & w1234$fameduc < 13 & !is.na(w1234$fameduc)] <- "High School"
 w1234$new_edu[w1234$fameduc >= 13 & w1234$fameduc < 17 & !is.na(w1234$fameduc)] <- "College"
 w1234$new_edu[w1234$fameduc >= 17 & !is.na(w1234$fameduc)] <- "More than College"
+w1234$new_edu
+w1234$famid
 ```
 
 #### Order the education levels and factor
@@ -205,9 +207,15 @@ w1234_clean <- subset(w1234, !is.na(new_edu) & !is.na(c04edex01) & !is.na(famedu
 #### Create a box plot with education levels and educational experiences at wave 4
 
 ```{r}
+# function for number of observations 
+n_fun <- function(x){
+  return(data.frame(y = median(x), label = paste0("n = ", sum(!is.na(x)))))
+}
+
 g <- ggplot(data = w1234_clean, mapping = aes(new_edu, c04edex01))
 g + geom_boxplot(data = w1234_clean, mapping = aes(new_edu, c04edex01), varwidth=T, 
-  fill = 'lightblue') + labs(title = "Education Expectations Against Parental Education", 
+  fill = 'lightblue') + stat_summary(fun.data = n_fun, geom = "text") + 
+  labs(title = "Education Expectations Against Parental Education", 
   x = "Education", y ="Educational Expectations at Wave 4")
 
 ```
