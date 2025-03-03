@@ -35,28 +35,16 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	@Override
 	public void printInOrderTraversal() {
 
-		if (!_left.isEmpty()){
+		if (!_left.isEmpty()) {
 			_left.printInOrderTraversal();
 		}
 
 		System.out.print(_element + " ");
 
-		if (!_right.isEmpty()){
+		if (!_right.isEmpty()) {
 			_right.printInOrderTraversal();
-
-
-//		if (!_left.isEmpty()){
-//			_left.printInOrderTraversal();
-//		}
-//		else {
-//			System.out.print(_element + " ");
-//		}
-//
-//		if (!_right.isEmpty()){
-//			_right.printInOrderTraversal();
-//		} else if (!_left.isEmpty()) {
-//			System.out.print(_element + " ");
-//		}
+		}
+	}
 
 	// Root -> Left -> Right
 	@Override
