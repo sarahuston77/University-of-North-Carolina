@@ -34,7 +34,6 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	// Left -> Right -> Root
 	@Override
 	public void printInOrderTraversal() {
-
 		if (!_left.isEmpty()) {
 			_left.printInOrderTraversal();
 		}
@@ -67,37 +66,76 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 			_left.printPostOrderTraversal();
 		}
 
+		if (!_right.isEmpty()){
+			_right.printPostOrderTraversal();
+		}
+
+		System.out.print(_element + " ");
 	}
 
-	// TODO: remove
+	// Remove an element and replace it with the smallest from the right
 	@Override
 	public BST<T> remove(T element) {
+
 		if (_element.compareTo(element) == 0) {  // remove (3 initial cases):
-			if (_left.isEmpty() && _right.isEmpty()) // leaf
+
+			// Case 1: leaf
+			if (_left.isEmpty() && _right.isEmpty())
 				return new EmptyBST<>();
-			// TODO
 
+			// Case 2: Left or right is empty; not both
+			if (_left.isEmpty()) {
+				return _right;
+			} else if (_right.isEmpty())
+				return _left;
+			else
+			// Case 3: Replace value with successor using getMin();
+				_element = _right.findMin();
+				_right = _right.remove(_element);
+
+		} else if (_element.compareTo(element) > 0){
+			if (_left.isEmpty())
+				return this;
+			_left = _left.remove(element);
+
+		} else if (_element.compareTo(element) < 0){
+			if (_right.isEmpty())
+				return this;
+			_right = _right.remove(element);
 		}
-		return this; // change such default lines as necessary
-	}
 
-	// TODO: findMin
+        return this;
+    }
+
+	// Finds the smallest value in a subtree
 	@Override
 	public T findMin() {
+		if (!_left.isEmpty()){
+			return _left.findMin();
+		}
+		return _element;
+    }
 
-		return null; // change such default lines as necessary
-	}
-
-	// TODO: replaceRange
+	// Replaces a range of values and adds a new value
 	@Override
 	public BST<T> replaceRange(T start, T end, T newValue) {
-
-		return this; // change such default lines as necessary
+		return removeRange(start, end).insert(newValue);
 	}
 
 	public BST<T> removeRange(T start, T end) {
-
-		return this; // change such default lines as necessary
+		if (start.compareTo(_element) <= 0 && (end.compareTo(_element) >= 0)){
+			return remove(_element).removeRange(start, end);
+		}
+		else if (start.compareTo(_element) > 0){
+			if (!_right.isEmpty()){
+				_right = _right.removeRange(start, end);
+			}
+		}else if (end.compareTo(_element) < 0){
+			if (!_left.isEmpty()) {
+				_left = _left.removeRange(start, end);
+			}
+		}
+		return this;
 	}
 
 	//====================================================================
