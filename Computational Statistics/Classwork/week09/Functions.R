@@ -18,9 +18,12 @@ output
 
 # @param m Required numeric input
 # @param roundm Logical, if TRUE the input scalar is rounded. Defaults to TRUE.
-AddSubtractOne <- function(m = NULL, roundm = TRUE){
+AddSubtractOne <- function(m = NULL, roundm = TRUE, precision = 2){
+  
+  if (is.null(m))
+    stop(paste0("ERROR: No scalar input provided for m.", " Please provide a value."))
   if (roundm)
-    m <- round(m)
+    m <- round(m, precision)
   add <- m + 1
   names(add) <- "Added"
   subtract <- m - 1
@@ -28,4 +31,13 @@ AddSubtractOne <- function(m = NULL, roundm = TRUE){
   return (list(add, subtract))
 }
 
-AddSubtractOne(10)
+AddSubtractOne()
+
+# Mode function for a vector of numbers
+mode <- function(v = NULL){
+  u <- unique(v)
+  return(u[which.max(tabulate(v))])
+}
+
+v = c(1, 2, 3, 3, 4)
+mode(v)
