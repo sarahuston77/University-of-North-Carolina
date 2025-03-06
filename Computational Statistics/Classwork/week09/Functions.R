@@ -36,8 +36,14 @@ AddSubtractOne()
 # Mode function for a vector of numbers
 mode <- function(v = NULL){
   u <- unique(v)
-  return(u[which.max(tabulate(v))])
+  return(u[which.max(tabulate(v))])s
 }
 
 v = c(1, 2, 3, 3, 4)
 mode(v)
+
+myData <- seq(1,50)
+newData <- myData
+for(p in 1:length(myData)){
+  newData[p] <- myData[p] + 1
+}
