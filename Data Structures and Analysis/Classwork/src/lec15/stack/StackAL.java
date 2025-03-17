@@ -1,0 +1,35 @@
+package lec15.stack;
+
+import java.util.ArrayList;
+
+// Stack implementation using ArrayLists (with Interfaces)
+// First In Last Out (FILO)
+public class StackAL<T> implements StackInt<T> {
+    private ArrayList<T> _stack;
+
+    public StackAL(){
+        _stack = new ArrayList<T>();
+    }
+
+    // pushes a node to the top of the stack
+    public int push(T value){
+        _stack.add(value);
+        return (getSize()-1);
+    }
+
+    /** pops the top of the stack
+     * @return returns the value, (=null if stack empty)
+     */
+    public T pop() {
+        // TODO:
+
+
+
+
+        return null;    // change as necessary
+    }
+
+    public int getSize(){
+        return (_stack.size());
+    }
+}
