@@ -17,3 +17,7 @@ library(lattice)
 xyplot(grades ~ study, cex = 2)
 myreg = lm(grades ~ study)
 myreg
+
+getwd()
+setwd("/Users/sara/Computational Statistics")
+setwd("/Users/sara")

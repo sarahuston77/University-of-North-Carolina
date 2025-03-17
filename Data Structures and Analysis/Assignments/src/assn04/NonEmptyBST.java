@@ -14,62 +14,35 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
 	@Override
 	public BST<T> insert(T element){
 		if (element.compareTo(_element) < 0){
-			if (_left.isEmpty()){
-				_left = new NonEmptyBST<>(element);
-			}
-			else
-				_left.insert(element);
+			_left = _left.insert(element);
 		}
 		if (element.compareTo(_element) > 0){
-			if (_right.isEmpty()){
-				_right = new NonEmptyBST<>(element);
-			}
-			else
-				_right.insert(element);
+			_right = _right.insert(element);
 		}
-
 		return this;
 	}
 
 	// Left -> Right -> Root
 	@Override
 	public void printInOrderTraversal() {
-		if (!_left.isEmpty()) {
-			_left.printInOrderTraversal();
-		}
-
+		_left.printInOrderTraversal();
 		System.out.print(_element + " ");
-
-		if (!_right.isEmpty()) {
-			_right.printInOrderTraversal();
-		}
+		_right.printInOrderTraversal();
 	}
 
 	// Root -> Left -> Right
 	@Override
 	public void printPreOrderTraversal() {
 		System.out.print(_element + " ");
-
-		if (!_left.isEmpty()){
-			_left.printPreOrderTraversal();
-		}
-
-		if (!_right.isEmpty()){
-			_right.printPreOrderTraversal();
-		}
+		_left.printPreOrderTraversal();
+		_right.printPreOrderTraversal();
 	}
 
 	// Left -> Right -> Root
 	@Override
 	public void printPostOrderTraversal() {
-		if (!_left.isEmpty()){
-			_left.printPostOrderTraversal();
-		}
-
-		if (!_right.isEmpty()){
-			_right.printPostOrderTraversal();
-		}
-
+		_left.printPostOrderTraversal();
+		_right.printPostOrderTraversal();
 		System.out.print(_element + " ");
 	}
 
