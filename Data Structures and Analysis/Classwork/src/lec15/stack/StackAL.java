@@ -21,12 +21,10 @@ public class StackAL<T> implements StackInt<T> {
      * @return returns the value, (=null if stack empty)
      */
     public T pop() {
-        // TODO:
-
-
-
-
-        return null;    // change as necessary
+        if (_stack.isEmpty()){
+            return null;
+        }
+        return _stack.remove(_stack.size() - 1);
     }
 
     public int getSize(){
