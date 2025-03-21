@@ -64,11 +64,19 @@ public class LinkedList {
     public boolean isEqual(LinkedList list2) {
         if (_size != list2._size)
             return false;
-        for (int i = 0; i < _size; i++){
-            if (get(i) != list2.get(i))
-                return false;
+
+        Node current1 = _head;
+        Node current2 = list2._head;
+
+        while (current1.getNext() != null){
+            if (current1.getValue() != current2.getValue()){
+                return (false);
+            }
+            current1 = current1.getNext();
+            current2 = current2.getNext();
         }
-        return true;    // Change this statement as required
+
+        return true;
     }
 
     /**
@@ -79,10 +87,13 @@ public class LinkedList {
      *
      */
     public void removeRepeats() {
-        for (int i = 0; i < _size - 1; i++){
-            if (get(i) == get(i + 1)) {
-                remove(get(i));
+        Node current = _head;
+
+        while(current.getNext() != null){
+            if (current.getValue() == current.getNext().getValue()){
+                remove(current.getValue());
             }
+            current = current.getNext();
         }
     }
 

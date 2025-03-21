@@ -11,42 +11,108 @@ header-includes:
 - \usepackage{float}
 ---
 
-```{r}
+```{r LoadData, message=FALSE, warning=FALSE, include=FALSE}
+# DO NOT SHOW IN FINAL REPORT
+options(tinytex.verbose = TRUE)
+options(digits = 5) 
+
+#Load Libraries
+Libraries <- c("knitr", "readr")
+for (p in Libraries) { 
+    library(p, character.only = TRUE)
+}
+
+opts_chunk$set(fig.align='center',
+               external=TRUE,
+               echo=TRUE,
+               warning=FALSE,
+               fig.pos='H', 
+               tidy.opts=list(width.cutoff=60),
+               tidy=TRUE,
+               warning = FALSE
+               )
+```
+
+# 1: Code that allows one to play the game
+## Install and load specific packages required for simulation
+```{r, message=FALSE}
+#install.packages('gdata')
 library(dplyr)
-# Function that runs the Monty Hall problem
-monty_hall <- function(guess = integer, change_guess = Boolean) {
+library('gdata')
+```
+
+## Function that runs the Monty Hall problem
+```{r}
+MontyHall <- function(guess = integer, change_guess = Boolean) {
   
-  # Randomly sets one door to be true, the others to be false
+  # Randomly sets one door as true and others as false
   doors <- sample(c(rep(TRUE, 1), rep(FALSE, 2)), 3, replace = F)
   indicies <- 1:3
 
-  # Open one of the false doors randomly that is not the given guess
+  # Open one of the false doors randomly that is not the given guess or the TRUE winner
   potential_removable_doors <- indicies[-c(which(doors), guess)]
-  if (length(potential_removable_doors) == 1)
-    remove_idx <- potential_removable_doors[1]
-  else 
-    remove_idx <- sample(potential_removable_doors, 1)
+  remove_idx <- resample(potential_removable_doors, 1)
   doors[remove_idx] <- NA
   
   if((change_guess && !doors[guess]) || (!change_guess && doors[guess])){
+    # Winner
     return (1)
   }
   else{
-    return (0)
-  }
+    # Loser
+    return (0)}
 }
-
 ```
 
+# 2) Simulation in which the player chooses to always keep the original door
+choice
 ```{r}
-iterations <- 10000
+num_iterations <- 10000
 i <- 0
-monty_hall(1, FALSE)
-score <- 0
-while (i < iterations) {
-  score = score + monty_hall(1, TRUE)
+score_nochange <- 0
+
+while (i < num_iterations) {
+  guess <- sample(1:3, 1)
+  score_nochange = score_nochange + MontyHall(guess, FALSE)
   i = i + 1
 }
-
 ```
+
+# 3) Simulation in which the player chooses to always switch the door-choice
+```{r}
+i <- 0
+score_change <- 0
+
+while (i < num_iterations) {
+  guess <- sample(1:3, 1)
+  score_change = score_change + MontyHall(guess, TRUE)
+  i = i + 1
+}
+```
+
+# 4 Compare the effectiveness of the two strategies by observing the outcome of the
+simulations
+## 4a) From the 10,000 iterations, how many times the player wins the car when
+s/he keeps the original door-choice?
+```{r}
+score_nochange
+```
+
+## 4b) From the 10,000 iterations, how many times the player wins the car when
+s/he switches the door-choice?
+```{r}
+score_change
+```
+
+## 4c) Based on 4a and 4b, compare the probability of winning the car using each
+strategy.
+```{r}
+print("The percent chance of winning by keeping your original guess:")
+score_nochange / num_iterations * 100
+print("The percent chance of winning by changing your original guess:")
+score_change / num_iterations * 100
+```
+## The best strategy is changing your guess. This statement is based on the clear difference in results from the simluation data. 
+
+
 
