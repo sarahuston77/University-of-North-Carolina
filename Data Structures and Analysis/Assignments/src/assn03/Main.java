@@ -23,6 +23,7 @@ public class Main {
         System.out.println("Last Index of element 10 in list = " + list.lastIndexOf(10));
 
         list.remove(20);
+        list.remove(30);
         System.out.println("list after removing 20 = " + list.toString());
 
         System.out.println("index of '30' = " + list.indexOf(30));
@@ -68,7 +69,6 @@ public class Main {
 
         // Test task 6
         list.remove(10);
-        list.remove(30);
         System.out.println("list before merging = " + list.toString());
         System.out.println("list2 before merging = " + list2.toString());
         list.merge(list2);

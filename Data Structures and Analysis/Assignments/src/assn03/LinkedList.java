@@ -42,7 +42,25 @@ public class LinkedList {
         if(i >= _size) {
             throw new IndexOutOfBoundsException();
         }
-        remove(get(i));
+
+        Node current = _head;
+        Node prev = null;
+
+        for(int t = 0; t < i; t++){
+            prev = current;
+            current = current.getNext();
+        }
+
+        if (current == _head){
+            _head = current.getNext();
+        } else {
+            prev.setNext(current.getNext());
+        }
+
+        if (current.getNext() == null){
+            _tail = current;
+        }
+        _size--;
     }
 
     /**
@@ -113,10 +131,10 @@ public class LinkedList {
             current.setNext(before);
             before = current;
             current = after;
-
-            _tail = _head;
-            _head = before;
         }
+
+        _tail = _head;
+        _head = before;
     }
 
     /**
