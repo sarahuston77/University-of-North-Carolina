@@ -2,6 +2,7 @@ package assn05;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V, P> {
@@ -79,14 +80,6 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
         if (left_child_idx >= _heap.size() && right_child_idx >= _heap.size()) return; // parent is a leaf
 
         Prioritized<V, P> parent = _heap.get(idx);
-        if (left_child_idx >= _heap.size()) { // left child doesn't exist
-            Prioritized<V, P> right_child = _heap.get(right_child_idx);
-            if (parent.getPriority().compareTo(right_child.getPriority()) < 0){
-                _heap.set(right_child_idx, parent);
-                _heap.set(idx, right_child);
-            }
-            return;
-        }
 
         if (right_child_idx >= _heap.size()) { // right child doesn't exist
             Prioritized<V, P> left_child = _heap.get(left_child_idx);
@@ -105,7 +98,7 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
                 _heap.set(left_child_idx, parent);
                 _heap.set(idx, left_child);
                 bubble_down_rec(left_child_idx);
-            } else {
+            } else { // right child larger than left child
                 _heap.set(right_child_idx, parent);
                 _heap.set(idx, right_child);
                 bubble_down_rec(right_child_idx);
@@ -132,7 +125,22 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      * @param newPriority
      */
     public void updatePriority(V value, P newPriority) {
-
+        Prioritized<V, P> zero = new Patient(value, 0);
+        Prioritized<V, P> newpt = new Patient(value, newPriority);
+        for (int i = 0; i < _heap.size(); i++){
+            if (_heap.get(i).getValue() == value){
+                if (newPriority.compareTo(zero.getPriority()) < 0){ // newPriority < 0 -> remove element
+                    _heap.remove(i);
+                }else{
+                    _heap.set(i, newpt);
+                    if (newPriority.compareTo(_heap.get((i-1)/2).getPriority()) > 0){ // updated value larger than parent
+                        bubble_up_rec(i);
+                    }else{ // updated value not larger than parent so check child values
+                        bubble_down_rec(i);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -140,7 +148,13 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      * 2nd constructor that builds a heap given an initial array of prioritized elements.
      * @param initialEntries This is an initial ArrayList of patients
      */
-    public MaxBinHeapER(Prioritized<V, P>[] initialEntries ) {
+    public MaxBinHeapER(Prioritized<V, P>[] initialEntries) {
+        _heap = new ArrayList<>(Arrays.asList(initialEntries));
+        // builds a max heap by bubbling down starting at the last elements parent
+        for(int i = ((_heap.size() - 1)/2); i >= 0 ; i--){
+            bubble_down_rec(i);
+        }
+
     }
 
     /**

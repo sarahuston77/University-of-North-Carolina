@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         testT1();
         testT2();
-//        testT3();
+        testT3();
         testT4();
     }
 
@@ -41,7 +41,7 @@ public class Main {
 
         for (int i = 0; i < mbnER.size(); i++) {
             System.out.print(mbnER.getAsArray()[i].getPriority());
-            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.print(mbnER.getAsArray()[i].getValue());
             System.out.println();
         }
 
@@ -50,16 +50,16 @@ public class Main {
 
         for (int i = 0; i < mbnER.size(); i++) {
             System.out.print(mbnER.getAsArray()[i].getPriority());
-            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.print(mbnER.getAsArray()[i].getValue());
             System.out.println();
         }
 
         System.out.println();
-        mbnER.dequeue();
+        mbnER.updatePriority("E", 2);
 
         for (int i = 0; i < mbnER.size(); i++) {
             System.out.print(mbnER.getAsArray()[i].getPriority());
-            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.print(mbnER.getAsArray()[i].getValue());
             System.out.println();
         }
     }
@@ -142,10 +142,21 @@ public class Main {
         fillER(binHeap);
 
         // Code for (Task 4.1) Here
+        double em_time_before = System.nanoTime();
+        for(int i = 0; i < 100000; i++) {
+            simplePQ.dequeue();
+        }
+        results[0] = System.nanoTime() - em_time_before; // total time for 100,000 dequeues
+        results[1] = results[0] / 100000; // average time for each dequeue
 
         // Code for (Task 4.2) Here
+        double bn_time_before = System.nanoTime();
+        for(int i = 0; i < 100000; i++) {
+            binHeap.dequeue();
+        }
+        results[2] = System.nanoTime() - bn_time_before; // total time for 100,000 dequeues
+        results[3] = results[2] / 100000; // average time for each dequeue
 
         return results;
     }
-
 }
