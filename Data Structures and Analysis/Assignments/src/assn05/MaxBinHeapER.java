@@ -30,7 +30,23 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      */
     @Override
     public void enqueue(V value, P priority) {
+        Prioritized<V,P> pt = new Patient<>(value, priority);
+        _heap.add(pt);
+        bubble_up_rec(_heap.size()-1);
+    }
 
+    private void bubble_up_rec(int idx){
+        if (idx == 0) return; // parent is root
+
+        int parent_idx = (idx - 1)/2;
+        Prioritized<V,P> parent = _heap.get(parent_idx);
+        Prioritized<V,P> child = _heap.get(idx);
+
+        if (parent.getPriority().compareTo(child.getPriority()) < 0) { // parent is less than child
+            _heap.set(parent_idx, child);
+            _heap.set(idx, parent);
+            bubble_up_rec(parent_idx);
+        }
     }
 
     /**
@@ -38,6 +54,9 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      * @param value
      */
     public void enqueue(V value) {
+        Prioritized<V,P> pt = new Patient<>(value);
+        _heap.add(pt);
+        bubble_up_rec(_heap.size()-1);
     }
 
     /**
@@ -46,7 +65,52 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      */
     @Override
     public V dequeue() {
-         return null;
+        if (_heap.size() == 0) return null; // queue is empty
+        V hp = _heap.get(0).getValue();
+        _heap.set(0, _heap.get(_heap.size()-1));
+        _heap.remove(_heap.size()-1);
+        bubble_down_rec(0);
+        return hp;
+    }
+
+    private void bubble_down_rec(int idx) {
+        int left_child_idx = (idx * 2) + 1;
+        int right_child_idx = (idx * 2) + 2;
+        if (left_child_idx >= _heap.size() && right_child_idx >= _heap.size()) return; // parent is a leaf
+
+        Prioritized<V, P> parent = _heap.get(idx);
+        if (left_child_idx >= _heap.size()) { // left child doesn't exist
+            Prioritized<V, P> right_child = _heap.get(right_child_idx);
+            if (parent.getPriority().compareTo(right_child.getPriority()) < 0){
+                _heap.set(right_child_idx, parent);
+                _heap.set(idx, right_child);
+            }
+            return;
+        }
+
+        if (right_child_idx >= _heap.size()) { // right child doesn't exist
+            Prioritized<V, P> left_child = _heap.get(left_child_idx);
+            if (parent.getPriority().compareTo(left_child.getPriority()) < 0){
+                _heap.set(left_child_idx, parent);
+                _heap.set(idx, left_child);
+            }
+            return;
+        }
+
+        Prioritized<V, P> left_child = _heap.get(left_child_idx);
+        Prioritized<V, P> right_child = _heap.get(right_child_idx);
+
+        if (parent.getPriority().compareTo(left_child.getPriority()) < 0 || parent.getPriority().compareTo(right_child.getPriority()) < 0) { // parent is less than child
+            if (left_child.getPriority().compareTo(right_child.getPriority()) > 0) { // left child is larger than right child
+                _heap.set(left_child_idx, parent);
+                _heap.set(idx, left_child);
+                bubble_down_rec(left_child_idx);
+            } else {
+                _heap.set(right_child_idx, parent);
+                _heap.set(idx, right_child);
+                bubble_down_rec(right_child_idx);
+            }
+        }
     }
 
     /**
@@ -55,7 +119,8 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      */
     @Override
     public V getMax() {
-    	 return null;
+        if (_heap.size() == 0) return null; // empty queue
+        return (_heap.get(0).getValue());
     }
 
     /**
@@ -67,6 +132,7 @@ public class MaxBinHeapER  <V, P extends Comparable<P>> implements BinaryHeap<V,
      * @param newPriority
      */
     public void updatePriority(V value, P newPriority) {
+
     }
 
     /**

@@ -15,7 +15,7 @@ public class SimpleEmergencyRoom {
      * @return return patient with the highest priority
      */
     public Patient dequeue() {
-        Patient hp = _patients.getFirst();
+        Patient hp = _patients.get(0);
         for (int i = 0; i < _patients.size(); i++){
             Patient cp = _patients.get(i);
             if (hp.getPriority().compareTo(cp.getPriority()) < 0){

@@ -29,8 +29,41 @@ public class Main {
     /**
      * Test Task 2 - Write some tests to convince yourself that your code for Task 2 (A & B) is working
      */
-    public static void testT2(){
+    public static void testT2() {
+        MaxBinHeapER mbnER = new MaxBinHeapER<>();
+        mbnER.enqueue("A", 1);
+        mbnER.enqueue("C", 3);
+        mbnER.enqueue("B", 20);
+        mbnER.enqueue("D", 4);
+        mbnER.enqueue("E", 10);
+        mbnER.enqueue("F", 33);
+        mbnER.enqueue("A");
+
+        for (int i = 0; i < mbnER.size(); i++) {
+            System.out.print(mbnER.getAsArray()[i].getPriority());
+            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.println();
+        }
+
+        System.out.println();
+        mbnER.dequeue();
+
+        for (int i = 0; i < mbnER.size(); i++) {
+            System.out.print(mbnER.getAsArray()[i].getPriority());
+            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.println();
+        }
+
+        System.out.println();
+        mbnER.dequeue();
+
+        for (int i = 0; i < mbnER.size(); i++) {
+            System.out.print(mbnER.getAsArray()[i].getPriority());
+            //System.out.print(mbnER.getAsArray()[i].getValue());
+            System.out.println();
+        }
     }
+
 
     /**
      * Test Task 3 - This part can be used to test for task 3.
