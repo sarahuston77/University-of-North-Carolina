@@ -32,7 +32,9 @@ public class Main {
         SelfBalancingBST<Integer> avl_bst3 = new AVLTree<Integer>();
         avl_bst3 = avl_bst3.insert(10);
         avl_bst3 = avl_bst3.insert(12);
-        avl_bst3 = avl_bst3.insert(4);
+        avl_bst3 = avl_bst3.insert(16);
+
+        avl_bst3.remove(5);
         avl_bst3 = avl_bst3.insert(3);
         avl_bst3 = avl_bst3.insert(5);
         avl_bst3 = avl_bst3.insert(8);

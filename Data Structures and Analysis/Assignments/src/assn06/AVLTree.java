@@ -61,12 +61,13 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
      * Rotates the tree left and returns
      * AVLTree root for rotated result.
      */
-     private AVLTree<T> rotateLeft() {
+     public AVLTree<T> rotateLeft() {
          // You should implement left rotation and then use this 
          // method as needed when fixing imbalances.
-    	 // TODO
-
-         return null;
+         AVLTree<T> y = _right;
+         _left = _right._left;
+         y._left = this;
+         return y;
      }
     
     /**
@@ -83,14 +84,32 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
     @Override
     public SelfBalancingBST<T> insert(T element) {
-    	// TODO
+        if (_value == null) { // Tree is empty
+            _value = element;
+        } else if (_value.compareTo(element) > 0) { // Element is smaller than root
+            if (_left == null) {
+                AVLTree<T> new_tree = new AVLTree<>();
+                new_tree._value = element;
+                _left = new_tree;
+            } else {
+                _left.insert(element);
+            }
+        } else { // Element is larger than root
+            if (_right == null) {
+                AVLTree<T> new_tree = new AVLTree<>();
+                new_tree._value = element;
+                _right = new_tree;
+            } else {
+                _right.insert(element);
+            }
+        }
 
-        return null;
+        _size++;
+        return this;
     }
 
     @Override
     public SelfBalancingBST<T> remove(T element) {
-    	// TODO
 
         return null;
     }
