@@ -1,4 +1,5 @@
 package assn06;
+import java.lang.Math;
 
 public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     // Fields
@@ -67,6 +68,8 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
          AVLTree<T> y = _right;
          _left = _right._left;
          y._left = this;
+         y._height++;
+         this._height--;
          return y;
      }
     
@@ -77,20 +80,26 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
      private AVLTree<T> rotateRight() {
          // You should implement right rotation and then use this 
          // method as needed when fixing imbalances.
-    	 // TODO
-
-         return null;
+         AVLTree<T> y = _left;
+         _right = _left._right;
+         y._right = this;
+         y._height++;
+         this._height--;
+         return y;
      }
 
     @Override
     public SelfBalancingBST<T> insert(T element) {
-        if (_value == null) { // Tree is empty
+        if (_value == null) { // Tree is empty -> do not need to re-balance
             _value = element;
         } else if (_value.compareTo(element) > 0) { // Element is smaller than root
             if (_left == null) {
                 AVLTree<T> new_tree = new AVLTree<>();
                 new_tree._value = element;
                 _left = new_tree;
+                _left._height++;
+                _left._size++;
+
             } else {
                 _left.insert(element);
             }
@@ -99,11 +108,14 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 AVLTree<T> new_tree = new AVLTree<>();
                 new_tree._value = element;
                 _right = new_tree;
+                _right._height++;
+                _right._size++;
             } else {
                 _right.insert(element);
             }
         }
 
+        _height++;
         _size++;
         return this;
     }
