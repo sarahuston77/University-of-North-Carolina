@@ -8,7 +8,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     private AVLTree<T> _right;
     private int _height;
     private int _size;
-    
+
     public AVLTree() {
         _value = null;
         _left = null;
@@ -62,44 +62,82 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
      * Rotates the tree left and returns
      * AVLTree root for rotated result.
      */
-     public AVLTree<T> rotateLeft() {
-         // You should implement left rotation and then use this 
-         // method as needed when fixing imbalances.
-         AVLTree<T> y = _right;
-         _left = _right._left;
-         y._left = this;
-         y._height++;
-         this._height--;
-         return y;
-     }
-    
+    public AVLTree<T> rotateLeft() {
+        // You should implement left rotation and then use this
+        // method as needed when fixing imbalances.
+        AVLTree<T> y = _right;
+        y._size = _size;
+        _right = _right._left;
+        y._left = this;
+        if (_right == null && _left == null) {
+            _height = 0;
+            _size = 1;
+        } else if (_right == null) {
+            _height = _left._height + 1;
+            _size = _left._size + 1;
+        } else if (_left == null) {
+            _height = _right._height + 1;
+            _size = _right._size + 1;
+        } else {
+            _height = Math.max(_left._height, _right._height) + 1;
+            _size = _right._size + _left._size;
+        }
+
+        if (y._right == null) {
+            y._height = y._left._height + 1;
+        } else {
+            y._height = Math.max(y._left._height, y._right._height) + 1;
+        }
+
+        return y;
+    }
+
     /**
      * Rotates the tree right and returns
      * AVLTree root for rotated result.
      */
-     private AVLTree<T> rotateRight() {
-         // You should implement right rotation and then use this 
-         // method as needed when fixing imbalances.
-         AVLTree<T> y = _left;
-         _right = _left._right;
-         y._right = this;
-         y._height++;
-         this._height--;
-         return y;
-     }
+    private AVLTree<T> rotateRight() {
+        // You should implement right rotation and then use this
+        // method as needed when fixing imbalances.
+        AVLTree<T> y = _left;
+        y._size = _size;
+        _left = _left._right;
+        y._right = this;
+
+        if (_right == null && _left == null) {
+            _height = 0;
+            _size = 1;
+        } else if (_right == null) {
+            _height = _left._height + 1;
+            _size = _left._size + 1;
+        } else if (_left == null) {
+            _height = _right._height + 1;
+            _size = _right._size + 1;
+        } else {
+            _height = Math.max(_left._height, _right._height) + 1;
+            _size = _right._size + _left._size;
+        }
+
+        if (y._left == null) {
+            y._height = y._right._height + 1;
+        } else {
+            y._height = Math.max(y._left._height, y._right._height) + 1;
+        }
+
+        return y;
+    }
 
     @Override
     public SelfBalancingBST<T> insert(T element) {
-        if (_value == null) { // Tree is empty -> do not need to re-balance
+        if (_value == null) { // Tree is empty
             _value = element;
         } else if (_value.compareTo(element) > 0) { // Element is smaller than root
             if (_left == null) {
                 AVLTree<T> new_tree = new AVLTree<>();
                 new_tree._value = element;
                 _left = new_tree;
-                _left._height++;
                 _left._size++;
-
+                _left._height++;
             } else {
                 _left.insert(element);
             }
@@ -108,15 +146,65 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 AVLTree<T> new_tree = new AVLTree<>();
                 new_tree._value = element;
                 _right = new_tree;
-                _right._height++;
                 _right._size++;
+                _right._height++;
             } else {
                 _right.insert(element);
             }
         }
-
-        _height++;
         _size++;
+
+        if (_right == null && _left == null) {
+            _height++;
+            return this;
+        } // leaf
+        else if (_left == null) {
+            _height = _right.height() + 1;
+        } // Right height is larger by default
+        else if (_right == null) {
+            _height = _left.height() + 1;
+        } // Left height is larger by default
+        else {
+            _height = Math.max(_right._height, _left._height) + 1;
+        } // Height is max of two children's heights
+
+        if (_left == null) {
+            if (_height > 1) { // Right imbalance
+                if (_right._left != null && _right._right != null) {
+                    if (_right._left._height > _right._right._height) // RL
+                        _right._left.rotateRight();
+                } else if (_right._right == null) { // RL
+                    _right._left.rotateRight();
+                }
+                rotateLeft();
+            }
+        } else if (_right == null) {
+            if (_height > 1) { // Left imbalance
+                if (_left._right != null && _left._left != null) {
+                    if (_left._right._height > _left._left._height) // lR
+                        _left._right.rotateRight();
+                } else if (_left._left == null) { // LR
+                    _left._right.rotateLeft();
+                }
+                _right.rotateRight();
+            }
+        } else if (Math.abs(_right._height - _left._height) > 1) { // tree is imbalanced
+            if (_right._height > _left._height) { // Right imbalance
+                if (_right._left != null && _right._right != null) {
+                    if (_right._left._height > _right._right._height) // RL
+                        _right._left.rotateRight();
+                } else if (_right._right == null) { // RL
+                    _right._left.rotateRight();
+                }
+                _right.rotateLeft();
+            } else if (_left._right != null && _left._left != null) {
+                if (_left._right._height > _left._left._height) // lR
+                    _left._right.rotateRight();
+            } else if (_left._left == null) { // LR
+                _left._right.rotateLeft();
+            }
+            _right.rotateRight();
+        }
         return this;
     }
 
