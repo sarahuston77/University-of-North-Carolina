@@ -18,6 +18,12 @@ public class Main {
         System.out.println(avl_bst.height());
         System.out.println(avl_bst.size());
 
+        int[] a = {20,11, 50, 4, 6, 15, 3, 16, 17};
+        SelfBalancingBST<Integer> avl_bst_me = new AVLTree<Integer>();
+        for (int t : a){
+            avl_bst_me = avl_bst_me.insert(t);
+        }
+
         SelfBalancingBST<Integer> avl_bst2 = new AVLTree<Integer>();
         // Now insert 50 integers in increasing order which would
         // cause a simple BST to become very tall but for our
