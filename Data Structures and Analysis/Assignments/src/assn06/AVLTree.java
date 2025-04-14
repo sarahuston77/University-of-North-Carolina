@@ -40,7 +40,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> getLeft() {
         if (isEmpty()) {
-            return null;
+            _left = new AVLTree<>();
         }
         return _left;
     }
@@ -48,7 +48,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> getRight() {
         if (isEmpty()) {
-            return null;
+            _right = new AVLTree<>();
         }
         return _right;
     }
@@ -70,21 +70,21 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         _right = _right._left;
         y._left = this;
 
-        if (_right == null && _left == null) {
+        if (_left.isEmpty() && _right.isEmpty()) {
             _height = 0;
             _size = 1;
-        } else if (_right == null) {
+        } else if (_right.isEmpty()) {
             _height = _left._height + 1;
             _size = _left._size + 1;
-        } else if (_left == null) {
+        } else if (_left.isEmpty()) {
             _height = _right._height + 1;
             _size = _right._size + 1;
         } else {
             _height = Math.max(_left._height, _right._height) + 1;
-            _size = _right._size + _left._size;
+            _size = _right._size + _left._size + 1;
         }
 
-        if (y._right == null) {
+        if (y._right.isEmpty()) {
             y._height = y._left._height + 1;
         } else {
             y._height = Math.max(y._left._height, y._right._height) + 1;
@@ -106,21 +106,21 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         _left = _left._right;
         y._right = this;
 
-        if (_right == null && _left == null) {
+        if (_left.isEmpty() && _right.isEmpty()) {
             _height = 0;
             _size = 1;
-        } else if (_right == null) {
+        } else if (_right.isEmpty()) {
             _height = _left._height + 1;
             _size = _left._size + 1;
-        } else if (_left == null) {
+        } else if (_left.isEmpty()) {
             _height = _right._height + 1;
             _size = _right._size + 1;
         } else {
             _height = Math.max(_left._height, _right._height) + 1;
-            _size = _right._size + _left._size;
+            _size = _right._size + _left._size + 1;
         }
 
-        if (y._left == null) {
+        if (y._left.isEmpty()) {
             y._height = y._right._height + 1;
         } else {
             y._height = Math.max(y._left._height, y._right._height) + 1;
@@ -131,7 +131,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
     @Override
     public SelfBalancingBST<T> insert(T element) {
-        if (_value == null) { // Tree is empty
+        if (isEmpty()) { // Tree is empty
             _value = element;
         } else if (_value.compareTo(element) > 0) { // Element is smaller than root
             if (_left == null) {
@@ -154,24 +154,26 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 _right = (AVLTree<T>) _right.insert(element);
             }
         }
+
+        if (_left == null){ _left = new AVLTree<>();}
+        if (_right == null) { _right = new AVLTree<>();}
         _size++;
 
-        AVLTree<T> tree = this;
-        if (_right == null && _left == null) {
+        if (_right.isEmpty() && _left.isEmpty()) {
             _height++;
             return this;
         } // leaf
-        else if (_left == null) {
+        else if (_left.isEmpty()) {
             _height = _right.height() + 1;
         } // Right height is larger by default
-        else if (_right == null) {
+        else if (_right.isEmpty()) {
             _height = _left.height() + 1;
         } // Left height is larger by default
         else {
             _height = Math.max(_right._height, _left._height) + 1;
         } // Height is max of two children's heights
 
-        if (_left == null) {
+        if (_left.isEmpty()) {
             if (_height > 1) { // Right imbalance
                 if (_right._left != null && _right._right != null) {
                     if (_right._left._height > _right._right._height) // RL
@@ -179,8 +181,9 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 } else if (_right._right == null) { // RL
                     _right = _right.rotateRight();
                 }
+                return rotateLeft();
             }
-        } else if (_right == null) {
+        } else if (_right.isEmpty()) {
             if (_height > 1) { // Left imbalance
                 if (_left._right != null && _left._left != null) {
                     if (_left._right._height > _left._left._height) // lR
@@ -188,7 +191,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 } else if (_left._left == null) { // LR
                     _left = _left.rotateLeft();
                 }
-                tree = rotateRight();
+                return rotateRight();
             }
         } else if (Math.abs(_right._height - _left._height) > 1) { // tree is imbalanced
             if (_right._height > _left._height) { // Right imbalance
@@ -198,18 +201,17 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 } else if (_right._right == null) { // RL
                     _right = _right.rotateRight();
                 }
-                tree = rotateLeft();
+                return rotateLeft();
             } else if (_left._right != null && _left._left != null) {
                 if (_left._right._height > _left._left._height) // LR
                     _left = _left.rotateLeft();
-                tree = rotateRight();
+                return rotateRight();
             } else if (_left._left == null) { // LR
                 _left = _left.rotateLeft();
-                tree = rotateRight();
+                return rotateRight();
             }
         }
-
-        return tree;
+        return this;
     }
 
     @Override
@@ -223,9 +225,10 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        // TODO
-
-        return null;
+        if (!_left.isEmpty()){
+            return _left.findMin();
+        }
+        return _value;
     }
 
     @Override
@@ -233,23 +236,54 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        // TODO
-
-        return null;
+        if (!_right.isEmpty()){
+            return _right.findMax();
+        }
+        return _value;
     }
 
     @Override
     public boolean contains(T element) {
-    	// TODO
-
+        if (_value.compareTo(element) == 0){ return true;} // value match
+        if (_value.compareTo(element) > 0){ // value larger than root
+            if (_left.isEmpty()){ return false; // no values in left tree
+            }else return _left.contains(element);} // search left tree further
+        if (_value.compareTo(element) < 0){ // value larger than root
+            if (_right.isEmpty()){ return false; // no values in left tree
+            }else return _right.contains(element);} // search right tree further
         return false;
     }
 
     @Override
     public boolean rangeContain(T start, T end) {
-        // TODO
+        int s = (int) start;
+        int e = (int) end;
+        AVLTree<T> ptr = this;
+
+        if (_value.compareTo(start) == 0){ // start value found
+            for (int i = s + 1; i <= e; i++){
+                if ((i % 2) == (s % 2)){
+                    if (_right.isEmpty()) return false; // empty node in range
+                    else if ((int) _right._value != i){
+                        return false;
+                    }
+                }else{
+                    if (_left.isEmpty()) return false; // empty node in range
+                    else if ((int) _left._value != i){
+                        return false;
+                    }
+                }
+            }
+        } // value match
+        if (_value.compareTo(start) > 0){ // value larger than root
+            if (_left.isEmpty()){ return false; // no values in left tree
+            }else
+                return _left.rangeContain(start, end);} // search left tree further
+        if (_value.compareTo(start) < 0){ // value larger than root
+            if (_right.isEmpty()){ return false; // no values in left tree
+            }else
+                return _right.contains(start);} // search right tree further
 
         return false;
     }
-
 }

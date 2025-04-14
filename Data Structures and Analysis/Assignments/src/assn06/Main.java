@@ -24,6 +24,10 @@ public class Main {
             avl_bst_me = avl_bst_me.insert(t);
         }
 
+        avl_bst_me.findMax();
+        System.out.println(avl_bst_me.contains(4));
+        System.out.println(avl_bst_me.contains(17));
+        System.out.println(avl_bst_me.contains(433));
         SelfBalancingBST<Integer> avl_bst2 = new AVLTree<Integer>();
         // Now insert 50 integers in increasing order which would
         // cause a simple BST to become very tall but for our
