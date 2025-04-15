@@ -367,7 +367,10 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
     @Override
     public boolean rangeContain(T start, T end) {
-
-        return false;
+        if (!contains(start))
+            return false;
+        if (!contains(end))
+            return false;
+        return true;
     }
 }
