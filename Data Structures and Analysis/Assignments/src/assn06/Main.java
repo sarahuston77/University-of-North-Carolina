@@ -18,11 +18,14 @@ public class Main {
         System.out.println(avl_bst.height());
         System.out.println(avl_bst.size());
 
-        int[] a = {20,11, 50, 4, 6, 15, 3, 16, 17};
+        int[] a = {20, 11, 50, 4, 6, 15, 3, 16, 17, 2};
         SelfBalancingBST<Integer> avl_bst_me = new AVLTree<Integer>();
         for (int t : a){
             avl_bst_me = avl_bst_me.insert(t);
         }
+        avl_bst_me.remove(20);
+        avl_bst_me.remove(4);
+        avl_bst_me.remove(3);
 
         avl_bst_me.findMax();
         System.out.println(avl_bst_me.contains(4));
@@ -44,7 +47,7 @@ public class Main {
         avl_bst3 = avl_bst3.insert(12);
         avl_bst3 = avl_bst3.insert(16);
 
-        avl_bst3.remove(5);
+        avl_bst3.remove(10);
         avl_bst3 = avl_bst3.insert(3);
         avl_bst3 = avl_bst3.insert(5);
         avl_bst3 = avl_bst3.insert(8);

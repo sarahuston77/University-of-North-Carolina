@@ -155,8 +155,12 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
             }
         }
 
-        if (_left == null){ _left = new AVLTree<>();}
-        if (_right == null) { _right = new AVLTree<>();}
+        if (_left == null) {
+            _left = new AVLTree<>();
+        }
+        if (_right == null) {
+            _right = new AVLTree<>();
+        }
         _size++;
 
         if (_right.isEmpty() && _left.isEmpty()) {
@@ -216,8 +220,83 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
 
     @Override
     public SelfBalancingBST<T> remove(T element) {
+        if (isEmpty()){return new AVLTree<>();} // return an empty tree if empty
+        if (_value.compareTo(element) > 0){ // value is larger than element
+            if (getLeft().isEmpty()){
+                return this; // no element found
+            }else
+                _left = (AVLTree<T>) _left.remove(element);
+        }
+        else if (_value.compareTo(element) < 0){ // value is larger than element
+            if (getRight().isEmpty()){
+                return this; // no element found
+            }else
+                _right = (AVLTree<T>) _right.remove(element);
+        }
+        else { // value matches element
+            if (_left.isEmpty() && _right.isEmpty()){ // leaf
+                return new AVLTree<>();
+            } else if (_left.isEmpty()){ // move right up
+                return _right;
+            } else if (_right.isEmpty()){ // move left up
+                return _left;
+            } else { // successor node from left tree
+                _value = _right.findMin();
+                _right = _right.deleteMin();
+                return this;
+            }
+        }
 
-        return null;
+        _size--;
+
+        if (_left.isEmpty() && _right.isEmpty()) {
+            _height = 0;
+        }else if (_left.isEmpty()){
+            _height = _right._height + 1;
+        }else if (_right.isEmpty()){
+            _height = _left._height + 1;
+        }else
+            _height = Math.max(_left._height, _right._height) + 1;
+
+        if (_left.isEmpty()) {
+            if (_height > 1) { // Right imbalance
+                if (_right._left != null && _right._right != null) {
+                    if (_right._left._height > _right._right._height) // RL
+                        _right = _right.rotateRight();
+                } else if (_right._right == null) { // RL
+                    _right = _right.rotateRight();
+                }
+                return rotateLeft();
+            }
+        } else if (_right.isEmpty()) {
+            if (_height > 1) { // Left imbalance
+                if (_left._right != null && _left._left != null) {
+                    if (_left._right._height > _left._left._height) // lR
+                        _left = _left.rotateLeft();
+                } else if (_left._left == null) { // LR
+                    _left = _left.rotateLeft();
+                }
+                return rotateRight();
+            }
+        } else if (Math.abs(_right._height - _left._height) > 1) { // tree is imbalanced
+            if (_right._height > _left._height) { // Right imbalance
+                if (_right._left != null && _right._right != null) {
+                    if (_right._left._height > _right._right._height) // RL
+                        _right = _right.rotateRight();
+                } else if (_right._right == null) { // RL
+                    _right = _right.rotateRight();
+                }
+                return rotateLeft();
+            } else if (_left._right != null && _left._left != null) {
+                if (_left._right._height > _left._left._height) // LR
+                    _left = _left.rotateLeft();
+                return rotateRight();
+            } else if (_left._left == null) { // LR
+                _left = _left.rotateLeft();
+                return rotateRight();
+            }
+        }
+        return this;
     }
 
     @Override
@@ -225,7 +304,7 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        if (!_left.isEmpty()){
+        if (!_left.isEmpty()) {
             return _left.findMin();
         }
         return _value;
@@ -236,53 +315,58 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
         if (isEmpty()) {
             throw new RuntimeException("Illegal operation on empty tree");
         }
-        if (!_right.isEmpty()){
+        if (!_right.isEmpty()) {
             return _right.findMax();
         }
         return _value;
     }
 
+    public AVLTree<T> deleteMin() {
+        if (isEmpty()) {
+            throw new RuntimeException("Illegal operation on empty tree");
+        }
+        _size --;
+        if (_left.isEmpty()){ // root exception case
+            return new AVLTree<>();
+        }
+        if (!_left._left.isEmpty()) {
+            _left = _left.deleteMin();
+        }else {
+            _left = _left._right;
+        }
+
+        if (_left.isEmpty() && _right.isEmpty()) {
+            _height = 0;
+        }else if (_left.isEmpty()){
+            _height = _right._height + 1;
+        }else if (_right.isEmpty()){
+            _height = _left._height + 1;
+        }else
+            _height = Math.max(_left._height, _right._height) + 1;
+
+        return this;
+    }
+
     @Override
     public boolean contains(T element) {
-        if (_value.compareTo(element) == 0){ return true;} // value match
-        if (_value.compareTo(element) > 0){ // value larger than root
-            if (_left.isEmpty()){ return false; // no values in left tree
-            }else return _left.contains(element);} // search left tree further
-        if (_value.compareTo(element) < 0){ // value larger than root
-            if (_right.isEmpty()){ return false; // no values in left tree
-            }else return _right.contains(element);} // search right tree further
+        if (_value.compareTo(element) == 0) {
+            return true;
+        } // value match
+        if (_value.compareTo(element) > 0) { // value larger than root
+            if (_left.isEmpty()) {
+                return false; // no values in left tree
+            } else return _left.contains(element);
+        } // search left tree further
+        if (_value.compareTo(element) < 0) { // value larger than root
+            if (_right.isEmpty()) {
+                return false; // no values in left tree
+            } else return _right.contains(element);
+        } // search right tree further
         return false;
     }
 
     @Override
     public boolean rangeContain(T start, T end) {
-        int s = (int) start;
-        int e = (int) end;
-        AVLTree<T> ptr = this;
-
-        if (_value.compareTo(start) == 0){ // start value found
-            for (int i = s + 1; i <= e; i++){
-                if ((i % 2) == (s % 2)){
-                    if (_right.isEmpty()) return false; // empty node in range
-                    else if ((int) _right._value != i){
-                        return false;
-                    }
-                }else{
-                    if (_left.isEmpty()) return false; // empty node in range
-                    else if ((int) _left._value != i){
-                        return false;
-                    }
-                }
-            }
-        } // value match
-        if (_value.compareTo(start) > 0){ // value larger than root
-            if (_left.isEmpty()){ return false; // no values in left tree
-            }else
-                return _left.rangeContain(start, end);} // search left tree further
-        if (_value.compareTo(start) < 0){ // value larger than root
-            if (_right.isEmpty()){ return false; // no values in left tree
-            }else
-                return _right.contains(start);} // search right tree further
 
         return false;
     }
