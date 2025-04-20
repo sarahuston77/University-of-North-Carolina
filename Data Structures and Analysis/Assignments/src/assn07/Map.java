@@ -8,7 +8,7 @@ public interface Map <K, V> {
     /**
      * The 'put' method creates an Account object using the key value pair,
      * and inserts the object at the appropriate index
-     * based on the hash of they key. If the key already
+     * based on the hash of the key. If the key already
      * exists in map, update its value.
      * @param key: the website name
      * @param value: the password

@@ -9,6 +9,7 @@ import static java.lang.Math.abs;
 public class PasswordManager<K,V> implements Map<K,V> {
     private static final String MASTER_PASSWORD = "s"; // You can change this
     private Account[] _passwords;
+    private int _size;
 
     public PasswordManager() {
         _passwords = new Account[50];
@@ -22,22 +23,25 @@ public class PasswordManager<K,V> implements Map<K,V> {
 
         if (_passwords[index] == null){ // no collision
             _passwords[index] = account;
+            _size++;
         }else{ // collision
             _passwords[index]._tail.setNext(account);
             _passwords[index]._tail = account;
         }
     }
 
-    // TODO: get
+    // Gets password(s) given a website
     @Override
     public V get(K key) {
-        return null;
+        Account<K, V> account = _passwords[abs(key.hashCode()) % 50];
+        if (account == null){ return null;} // no object found
+        return account.getPassword();
     }
 
-    // TODO: size
+    // Gets number of accounts
     @Override
     public int size() {
-        return 0;
+        return _size;
     }
 
     // TODO: keySet
