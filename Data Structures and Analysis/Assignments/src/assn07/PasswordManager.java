@@ -4,17 +4,29 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import static java.lang.Math.abs;
+
 public class PasswordManager<K,V> implements Map<K,V> {
-    private static final String MASTER_PASSWORD = "xyz"; // You can change this
+    private static final String MASTER_PASSWORD = "s"; // You can change this
     private Account[] _passwords;
 
     public PasswordManager() {
         _passwords = new Account[50];
     }
 
-    // TODO: put
+    // Creates an account at the appropriate index using hashing
     @Override
-    public void put(K key, V value) { }
+    public void put(K key, V value) {
+        Account<K, V> account = new Account<>(key, value);
+        int index = abs(key.hashCode()) % 50;
+
+        if (_passwords[index] == null){ // no collision
+            _passwords[index] = account;
+        }else{ // collision
+            _passwords[index]._tail.setNext(account);
+            _passwords[index]._tail = account;
+        }
+    }
 
     // TODO: get
     @Override

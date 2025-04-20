@@ -4,11 +4,13 @@ public class Account <K,V> {
     private K _website;
     private V _password;
     private Account _next;
+    Account<K, V> _tail;
 
     public Account(K website, V password) {
         _website = website;
         _password = password;
         _next = null;
+        _tail = this;
     }
 
     public K getWebsite() {
