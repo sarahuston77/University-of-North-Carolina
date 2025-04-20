@@ -50,6 +50,7 @@ public class Main {
         avl_bst3.remove(10);
         avl_bst3 = avl_bst3.insert(3);
         avl_bst3 = avl_bst3.insert(5);
+        avl_bst3 = avl_bst3.insert(4);
         avl_bst3 = avl_bst3.insert(8);
         avl_bst3 = avl_bst3.insert(7);
         System.out.println(avl_bst3.height());
