@@ -1,8 +1,6 @@
 package assn07;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Math.abs;
 
@@ -20,22 +18,38 @@ public class PasswordManager<K,V> implements Map<K,V> {
     public void put(K key, V value) {
         Account<K, V> account = new Account<>(key, value);
         int index = abs(key.hashCode()) % 50;
+        Account<K, V> ptr = _passwords[index];
 
-        if (_passwords[index] == null){ // no collision
+        if (ptr == null){ // no collision
             _passwords[index] = account;
-            _size++;
         }else{ // collision
-            _passwords[index]._tail.setNext(account);
-            _passwords[index]._tail = account;
+            if (ptr.getWebsite() == account.getWebsite()){ // duplicate found; update password
+                ptr.setPassword(account.getPassword());
+                return;}
+
+            while (ptr.getNext() != null){
+                if (ptr.getWebsite() == account.getWebsite()){ // duplicate found; update password
+                    ptr.setPassword(account.getPassword());
+                    return;}
+                ptr = ptr.getNext();
+            }
+            ptr.setNext(account); // No duplicate found; add new password at end of LL
         }
+        _size++;
     }
 
     // Gets password(s) given a website
     @Override
     public V get(K key) {
         Account<K, V> account = _passwords[abs(key.hashCode()) % 50];
-        if (account == null){ return null;} // no object found
-        return account.getPassword();
+        if (account == null){ return null;}// no object found
+        while (account != null){
+            if (account.getWebsite() == key){
+                return account.getPassword();
+            }
+            account = account.getNext();
+        }
+        return null;
     }
 
     // Gets number of accounts
@@ -44,22 +58,63 @@ public class PasswordManager<K,V> implements Map<K,V> {
         return _size;
     }
 
-    // TODO: keySet
+    // Returns a set of all the websites in the password manager
     @Override
     public Set<K> keySet() {
-        return null;
+        Account<K, V> ptr;
+        Set<K> set = new HashSet<>();
+        for (int i = 0; i < _passwords.length; i++){
+            if (_passwords[i] != null){
+                ptr = _passwords[i];
+                while (ptr != null){
+                    set.add(ptr.getWebsite());
+                    ptr = ptr.getNext();
+                }
+            }
+        }
+        return set;
     }
 
-    // TODO: remove
+    // Removes the key and returns the matching value pair
     @Override
     public V remove(K key) {
+        Account<K, V> ptr = _passwords[abs(key.hashCode()) % 50];
+        if (ptr == null) {return null;} // No account to remove
+        if (ptr.getWebsite() == key) { // Update array
+            _passwords[abs(key.hashCode()) % 50] = ptr.getNext();
+            _size--;
+            return ptr.getPassword();
+        }
+        while (ptr.getNext() != null){
+            if (ptr.getNext().getWebsite() == key){
+                V password = (V) ptr.getNext().getPassword();
+                ptr.setNext(ptr.getNext().getNext());
+                _size--;
+                return password;
+            }
+            ptr = ptr.getNext();
+        }
         return null;
     }
 
-    // TODO: checkDuplicate
+    // Checks for websites with duplicate passwords
     @Override
     public List<K> checkDuplicates(V value) {
-        return null;
+        Account<K, V> ptr;
+        List<K> set = new ArrayList<>();
+        for (int i = 0; i < _passwords.length; i++){
+            if (_passwords[i] != null){
+                ptr = _passwords[i];
+                while (ptr != null){
+                    if (ptr.getPassword() == value){
+                        set.add(ptr.getWebsite());
+                    }
+                    ptr = ptr.getNext();
+                }
+            }
+        }
+        if (set.isEmpty()){return null;} // no matches
+        return set;
     }
 
     @Override
