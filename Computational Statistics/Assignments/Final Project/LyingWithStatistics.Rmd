@@ -14,7 +14,7 @@ header-includes:
 Diploma PROOF :)
 
 # Data manipulation
-## Cleans up the RMD output and files by ensuring they don't fall off the page
+## Cleans up the RMD output and files by ensuring they don't fall off the page. A lot of lying with statistics is appearing credible. Thus, I used the "knitr" and "readr" libraries to clean up the graph outputs and ensure there is no run off text in the pdf. This gives the document a clean and clear feel. I used StackOverflow to figure out how to do this and include it in all of my markdowns. 
 ```{r LoadData, message=FALSE, warning=FALSE}
 options(tinytex.verbose = TRUE)
 options(digits = 5) 
@@ -37,21 +37,23 @@ opts_chunk$set(fig.align='center',
 ```
 
 ## Install and load all required packages (Don't install in rmd)
-
+### No functions can be installed in Rmd, but the code is included for reproducibility. tidyverse and dplyr are critical for data manipulation. plotrix helped to create a 3D piechart.
 ```{r, message=FALSE}
 # install.packages("dplyr")
 # install.packages("tidyverse")
 # install.packages("knitr")
 # install.packages("readr")
-# install.packages("finalfit")
+# install.packages("plotrix")
 
 library("tidyverse")
 library("dplyr")
 library("knitr")
 library("readr")
+library("plotrix")
 ```
 
 ## Read in files based on type, headers, and with specific NA values accounted for
+### The data used was from a longitudional study of 674 children over 4 years. 
 
 ```{r}
 setwd("./Data")
@@ -202,13 +204,14 @@ legend(1.2, 0.99, c("Child’s use of alcohol,\ntobacco, or other drugs", "Child
 ```{r}
 p_values[p_values < 0.05] = "yes"
 p_values[p_values > 0.05] = "ABSOLUTELY NO CHANGE"
-percent_not_significant <- c(length(p_values[p_values > 0.05]) / 5 * 100, length(p_values[p_values < 0.05]) / 5 * 100)
+percent_not_significant <- c(length(p_values[p_values > 0.05]) / 5 * 100, (length(p_values[p_values < 0.05]) / 5 * 100) + 0.01)
 ```
 # Figure that significantly simplies the data
-```{r}
-pie(percent_not_significant, col = c("red", "blue"), labels = percent_not_significant, main="% of Score Difference Variables that Statistically Differed by Gender")
+```{r, error = FALSE, warning = FALSE}
+pie3D(percent_not_significant, col = c("red", "blue"), labels = c(percent_not_significant[1], "0"), main="% of Score Difference Variables that Statistically Differed by Gender")
 
-legend(-2.1, 1.05, c("STATISTICALLY NO DIFFERENCE","yes"), cex=0.8, fill=c("red", "blue"))
+legend(-0.8, 1.05, c("STATISTICALLY NO DIFFERENCE","yes"), cex=0.8, fill=c("red", "blue"))
+
 ```
 
 
