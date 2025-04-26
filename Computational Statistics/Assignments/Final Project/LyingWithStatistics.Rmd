@@ -14,7 +14,8 @@ header-includes:
 Diploma PROOF :)
 
 # Data manipulation
-## Cleans up the RMD output and files by ensuring they don't fall off the page. A lot of lying with statistics is appearing credible. Thus, I used the "knitr" and "readr" libraries to clean up the graph outputs and ensure there is no run off text in the pdf. This gives the document a clean and clear feel. I used StackOverflow to figure out how to do this and include it in all of my markdowns. 
+## Cleans up the RMD output and files by ensuring they don't fall off the page. 
+### A lot of lying with statistics is appearing credible. Thus, we used the "knitr" and "readr" libraries to clean up the graph outputs and ensure there is no run off text in the pdf. This gives the document a clean and clear feel. We used StackOverflow to figure out how to do this and include it in all of our markdowns. 
 ```{r LoadData, message=FALSE, warning=FALSE}
 options(tinytex.verbose = TRUE)
 options(digits = 5) 
@@ -53,7 +54,7 @@ library("plotrix")
 ```
 
 ## Read in files based on type, headers, and with specific NA values accounted for
-### The data used was from a longitudional study of 674 children over 4 years. 
+### The data used was from a longitudional study of 674 children over 4 years. Each file was read in based on type of file while setting certain NA strings to NA. This data cleaning was critical in the results, because otherwise those numbers would significantly alter the results.
 
 ```{r}
 setwd("./Data")
@@ -71,7 +72,7 @@ educinc <- read.csv("educinc.csv",
 ``` 
 
 ## Add transposed variable names to w4_child based off of the provided text file
-
+### Adding variable names was critical to accurately tracking data and ensuring results are not misconstrued by mislabeling.
 ```{r}
 names(w4_child) <- t(names_w4_child)
 ```
@@ -86,7 +87,7 @@ names(educinc) <- tolower(names(educinc))
 ```
 
 ## Merge files by famid and select specified variables
-
+### Although there was a lot more data, selecting which variables were applicable lay at the crux of our data analysis. Other extraneous variables would only serve to clutter the data set and possibly cause inaccurate filtering of NA values down the road. In this analysis, we focused on five variables: "Child’s use of alcohol, tobacco, or other drugs", "Child’s attachment to teachers", "Child's attachment to school", "Child’s peer competence", "Child’s perceived discrimination". Demographic information such as gender, number of siblings, etc. was also included for further inspection.
 ```{r, warning=FALSE}
 w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
           %>% reduce(full_join, by = "famid")) %>% dplyr::select(famid, c01cohort, 
@@ -96,14 +97,14 @@ w1234 <- (list(w1_child, w2_child, w3_child, w4_child, educinc)
 ```
 
 ## Reverse code for pcmp 1 and 2
-
+### The vairable child's peer competence had an inverse score, in comparison to the other scores. This meant that a low peer competence score was a negative thing. Since the study directors ordered the other variables with a high score as negative e.g., 7 for increased percived discrimination, we needed to recode the variables to ensure accruate correlation and analysis results.
 ```{r}
 pcmp_01_02_cols <- c(grep("pcmp01", names(w1234)), grep("pcmp02", names(w1234)))
 w1234[ ,pcmp_01_02_cols] <- 5 - w1234[ ,pcmp_01_02_cols]
 ```
 
 ## Compute averages based on sets of columns for variable sets and place average into a new variable
-
+### In this analysis, we investigated averages to ensure broader conclusions. We chose not to look closely at the nuances of each data piece. We sought macro over micro conclusions.
 ```{r}
 w1234$c01attt <- rowMeans(w1234[c(grep("c01attt", names(w1234)))], na.rm = TRUE)
 w1234$c04attt <- rowMeans(w1234[c(grep("c04attt", names(w1234)))], na.rm = TRUE)
@@ -124,6 +125,7 @@ w1234$c04atod <- rowSums(w1234[c("c04atod01", "c04atod02", "c04atod03", "c04atod
 ```
 
 ## Create difference scores between Waves 1 and 4
+### Looking across a 4 year study provided an invaluable look at children's changing views. Thus, we chose to catelog and statistically explore these changes across this large time span. We utilized absolute value to compare changes broadly, with less interest in the change's final direction, but the magnititude the of the score differences.
 ```{r}
 score_variables <- c("atts", "pcmp", "attt", "dscr", "atod")
 w1234[paste("difference_", score_variables, sep = "")] <- w1234[paste("c01", score_variables, sep = "")] - w1234[paste("c04", score_variables, sep = "")]
@@ -137,12 +139,14 @@ atod <- abs(mean(w1234$c01atod - w1234$c04atod, na.rm = TRUE))
 ```
 
 ## Function to generate a random vector of colors in order from 
+### We coded this function to return a generic color vector with length of "num". When graphing bargraphs and histograms, manually inputting each color of each bar e.g., c("blue", "red", "yellow") consumed extra space and effort. After research online, we found a cool method that creates a vector of pretty in order colors that we wielded.
 ```{r}
 color_vector <- function(num){
   return (topo.colors(num))}
 ```
 
 # A fair figure depicting data
+### We decided to graph the average score differences for the five chosen variables longitutionally. This figure nicely sums up the major changes in a clear and effective format. The title, legend, x and y axes acurrately portrays the results. The labels lack any misleadning information and the scales lie within appropriate ranges for the data. Even the colors fail to persuade. 
 ```{r}
 average_change <- c(atts, pcmp, attt, dscr, atod)
 barplot(average_change, main="Average Score Differences in Variables from Wave 1 to Wave 4 ", xlab="Variables",  
@@ -154,12 +158,14 @@ legend("topleft", c("Child's attachment to school","Child’s peer competence","
 
 # Conducting a statistical test such as t-squared test on girls vs boys
 ## Recode girls and boys
+### We found the intersection of gender on child development to pose some questions. Did gender significantly correlate with developmental factors such as attachment to school, peer competence, attachment to teachers, percieved discrimination, and substance usage? Does gender play a role in socialization i.e., peer competence and attachment to teachers more than substance usage, which many consider to be less associated with gender?
 ```{r}
 w1234$c01gender[w1234$c01gender == 1] = "girl"
 w1234$c01gender[w1234$c01gender == 2] = "boy"
 ```
 
 # Compare differences across genders by creating a t-test for genders function
+### The t-test provided a reliable method of discerning the correlation between gender groups and these variables. Both the p-value and t-value provide insight into the statistical significance and level of results. The function t_test_gender provided an easy shorthand to perform this analysis with the child's gender.
 ```{r}
 t_test_gender <- function(score_var){
   return (t.test(score_var ~ c01gender, paired = FALSE, data = w1234))}
@@ -179,15 +185,15 @@ tpcmp
 ```
 # Display statistical analysis results of gender variances across score differences
 ## Function to extract p values from t-test result text
+### This function offered a clean and clear shorthand for extracting important data from the t-test results. We later graphed these results, avoiding repition and clear delineage to where to this data came from. 
 ```{r}
 extract_pval <- function(ttest){
   return (ttest$p.value)
 }
 ```
 
-
-## Graph p values
-
+## Graph p-values
+### After extracting p-values from the dense wordy responses, we outlined a clear graph to visualize the responses. 
 ```{r}
 p_values <- c(extract_pval(tatod), extract_pval(tattt), extract_pval(tatts), extract_pval(tpcmp), extract_pval(tdscr))
 barplot(p_values, main="Gender Differences in Score Differences from Wave 1 to Wave 4 ", xlab="Variables",  
@@ -197,16 +203,18 @@ legend(1.2, 0.99, c("Child’s use of alcohol,\ntobacco, or other drugs", "Child
        bty="n", fill = c("orange","lightyellow", "yellow", "gold", "lightpink"))
 ```
 # Interpretation of results
-## S
+## The results demonstrate all p values > 0.05. This illuminates that the hypothesis that gender would signfiicantly correlate with differences in scores can likely be rejected. Further, it appears substance use, attachment to school, and percieved discrimination vary due to randomness, not gender. On the other hand, attachment to teachers and child peer competence have much lower p values, falling around 0.2. Albeit not statistically significant, it is important to consider the differences these factors could still play given not fall off p-values. Thus, the idea that gender socialization might be playing a role in these factors might require further investigation.
 
 # Figure and analysis that provides a distorted version of what we actually would find in the data.
 ## Code to determine which p_values are stastically significant i.e., <0.05
+### In this code, although the data is correct, the interpretation is severely skewed. The phrasing intentionally simplies the previous graph and results. 
 ```{r}
 p_values[p_values < 0.05] = "yes"
 p_values[p_values > 0.05] = "ABSOLUTELY NO CHANGE"
 percent_not_significant <- c(length(p_values[p_values > 0.05]) / 5 * 100, (length(p_values[p_values < 0.05]) / 5 * 100) + 0.01)
 ```
 # Figure that significantly simplies the data
+### The red color and 3D pie chart serve to dominant the idea the viewer is supposed to percieve. The graph portrays a harsh lack of gender influence on these longitutional variables, when in reality, the story is much more nuanced. We employed the "all-or-nothing" tatic to take 'true' data and favor a narrative.
 ```{r, error = FALSE, warning = FALSE}
 pie3D(percent_not_significant, col = c("red", "blue"), labels = c(percent_not_significant[1], "0"), main="% of Score Difference Variables that Statistically Differed by Gender")
 
